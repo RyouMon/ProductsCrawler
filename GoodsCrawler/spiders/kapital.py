@@ -1,17 +1,44 @@
 # -*- coding: utf-8 -*-
-from scrapy import Spider, Request
 from urllib.parse import urlencode
+
+from scrapy import Request
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.loader import ItemLoader
+from scrapy.loader.processors import TakeFirst, Compose, Identity
+from scrapy.linkextractors import LinkExtractor
+
 from GoodsCrawler.items import KapitalItem
 
 
-class KapitalSpider(Spider):
-    """
-    爬取Kapital品牌的商品。
-    该爬虫的目的是测试爬取规则，经过调整也可以用于生产。
-    """
+class GoodsLoader(ItemLoader):
+    default_output_processor = TakeFirst()
+
+
+class KapitalLoader(GoodsLoader):
+    # 为解决图片保存路径的问题，只能将货号中的'-'符号删除
+    no_out = Compose(
+        TakeFirst(),
+        lambda x: x.strip(),
+        lambda x: x.replace('-', '')
+    )
+    images_out = Identity()
+
+
+class KapitalSpider(CrawlSpider):
     name = 'kapital'
     allowed_domains = ['kapital-webshop.jp']
-    start_urls = ['']
+    start_urls = []
+
+    rules = (
+        Rule(
+            LinkExtractor(
+                allow=r'.*html',
+                restrict_xpaths='//ul[@class="item_list clearfix"]/li//div[@class="img_inner"]/a'
+            ),
+            callback='parse_item',
+            follow=True
+        ),
+    )
 
     def start_requests(self):
         base_url = 'https://www.kapital-webshop.jp/category/MENSALL/?'
@@ -22,27 +49,19 @@ class KapitalSpider(Spider):
             'request': 'page',
             'next_page': 1
         }
+        # 改变Query的next_page参数即可实现横向爬取
+        # 其他参数无需变化，参考官网的URL即可。
         for i in range(1, 2):
             query['next_page'] = i
             url = base_url + urlencode(query)
             yield Request(url, self.parse)
 
-    def parse(self, response):
-        error = response.xpath('//div[@id="error"]')
-        # 检查获取的是否为正确的页面
-        if not error:
-            items = response.xpath('//ul[@class="item_list clearfix"]/li')
-            for item in items:
-                item_url = item.xpath('.//div[@class="img_inner"]/a/@href').get()
-                yield Request(item_url, self.parse_item)
-        else:
-            pass
-
     def parse_item(self, response):
-        item = KapitalItem()
-        item['brand'] = 'kapital'
-        item['item_name'] = response.xpath('//h2[@id="itemName"]/text()').get()
-        item['item_no'] = response.xpath('//p[@class="appeal"]/text()').get().strip().replace('-', '')
-        item['item_url'] = response.url
-        item['images'] = response.xpath('//div[@class="thumb_list"]//img/@src').getall()
-        yield item
+        loader = KapitalLoader(item=KapitalItem(), response=response)
+        loader.add_value('brand', 'kapital')
+        loader.add_xpath('name', '//h2[@id="itemName"]/text()')
+        loader.add_xpath('no', '//p[@class="appeal"]/text()')
+        loader.add_value('url', response.url)
+        loader.add_xpath('images', '//div[@class="thumb_list"]//img/@src')
+        loader.add_value('image_base_url', 'https://www.kapital-webshop.jp/')
+        yield loader.load_item()
