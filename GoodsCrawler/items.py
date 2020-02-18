@@ -8,16 +8,13 @@
 from scrapy import Item, Field
 
 
-class GoodscrawlerItem(Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
-
-
-class KapitalItem(Item):
+class GoodsItem(Item):
     brand = Field()
     title = Field()
     art_no = Field()
     item_url = Field()
     images = Field()
+
+
+class KapitalItem(GoodsItem):
     image_base_url = Field()
