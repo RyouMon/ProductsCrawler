@@ -20,7 +20,7 @@ class GoodsUrlPipeline(object):
     def process_item(self, item, spider):
         # 保存路径：
         # images/<brand>/<number>/url.txt
-        filepath = IMAGES_STORE + item['brand'] + '/' + item['art_no']
+        filepath = IMAGES_STORE + '/' + item['brand'] + '/' + item['art_no']
         try:
             makedirs(filepath)
         except OSError:
