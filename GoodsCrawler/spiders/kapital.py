@@ -15,11 +15,9 @@ class GoodsLoader(ItemLoader):
 
 
 class KapitalLoader(GoodsLoader):
-    # 为解决图片保存路径的问题，只能将货号中的'-'符号删除
-    no_out = Compose(
+    art_no_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
-        lambda x: x.replace('-', '')
     )
     images_out = Identity()
 
@@ -59,9 +57,9 @@ class KapitalSpider(CrawlSpider):
     def parse_item(self, response):
         loader = KapitalLoader(item=KapitalItem(), response=response)
         loader.add_value('brand', 'kapital')
-        loader.add_xpath('name', '//h2[@id="itemName"]/text()')
-        loader.add_xpath('no', '//p[@class="appeal"]/text()')
-        loader.add_value('url', response.url)
+        loader.add_xpath('title', '//h2[@id="itemName"]/text()')
+        loader.add_xpath('art_no', '//p[@class="appeal"]/text()')
+        loader.add_value('item_url', response.url)
         loader.add_xpath('images', '//div[@class="thumb_list"]//img/@src')
         loader.add_value('image_base_url', 'https://www.kapital-webshop.jp/')
         yield loader.load_item()
