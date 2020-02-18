@@ -4,6 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+from os import mkdir, makedirs
 from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
@@ -15,13 +16,18 @@ class GoodscrawlerPipeline(object):
 
 
 class GoodsUrlPipeline(object):
-    """把商品的网址保存为txt文件,优先级应该低于其他Pipeline，否则会引发FileNotFoundError"""
+    """把商品的网址保存为txt文件"""
     def process_item(self, item, spider):
         # 保存路径：
         # images/<brand>/<number>/url.txt
-        filename = 'images/' + item['brand'] + '/' + item['item_no'] + '/url.txt'
+        filepath = 'images/' + item['brand'] + '/' + item['no']
+        try:
+            makedirs(filepath)
+        except OSError:
+            pass
+        filename =  filepath + '/url.txt'
         with open(filename, 'w', encoding='utf-8') as f:
-            f.write(item['item_url'])
+            f.write(item['url'])
         return item
 
 

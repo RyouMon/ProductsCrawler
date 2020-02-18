@@ -16,8 +16,8 @@ class GoodscrawlerItem(Item):
 
 class KapitalItem(Item):
     brand = Field()
-    item_name = Field()
-    item_no = Field()
+    title = Field()
+    art_no = Field()
     item_url = Field()
     images = Field()
-
+    image_base_url = Field()
