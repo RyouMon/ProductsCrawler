@@ -8,7 +8,7 @@ from os import mkdir, makedirs
 from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
-
+from GoodsCrawler.settings import IMAGES_STORE
 
 class GoodscrawlerPipeline(object):
     def process_item(self, item, spider):
@@ -20,25 +20,22 @@ class GoodsUrlPipeline(object):
     def process_item(self, item, spider):
         # 保存路径：
         # images/<brand>/<number>/url.txt
-        filepath = 'images/' + item['brand'] + '/' + item['no']
+        filepath = IMAGES_STORE + item['brand'] + '/' + item['art_no']
         try:
             makedirs(filepath)
         except OSError:
             pass
         filename =  filepath + '/url.txt'
         with open(filename, 'w', encoding='utf-8') as f:
-            f.write(item['url'])
+            f.write(item['item_url'])
         return item
 
 
-class KapitalImagesPipeline(ImagesPipeline):
-    """把Kapital的图片下载到image文件夹下"""
-    image_base_url = 'https://www.kapital-webshop.jp/'
-
+class GoodsImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
-        url = request.url
-        file_path = url.split('/')[-2]
-        file_name = 'kapital/' + file_path + '/' + url.split('/')[-1]
+        brand = request.meta['brand']
+        art_no = request.meta['art_no']
+        file_name = brand + '/' + art_no + '/' + request.url.split('/')[-1]
         return file_name
 
     def item_completed(self, results, item, info):
@@ -48,5 +45,14 @@ class KapitalImagesPipeline(ImagesPipeline):
         return item
 
     def get_media_requests(self, item, info):
-        for part_url in item['images']:
-            yield Request(KapitalImagesPipeline.image_base_url+part_url)
+        image_base_url = item.get('image_base_url', None)
+        if image_base_url:
+            images_url = [image_base_url + part_url for part_url in item['images']]
+        else: # image_base_url is None
+            images_url = item['images']
+        for image_url in images_url:
+            yield Request(image_url,
+                          meta={'brand': item.get('brand'),
+                                'title': item.get('title'),
+                                'art_no': item.get('art_no'),}
+                          )
