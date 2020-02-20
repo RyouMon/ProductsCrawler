@@ -14,7 +14,15 @@ class GoodsItem(Item):
     art_no = Field()
     item_url = Field()
     images = Field()
+    price = Field()
 
 
 class KapitalItem(GoodsItem):
     image_base_url = Field()
+
+
+class SupremeItem(GoodsItem):
+    image_base_url = Field()
+    season = Field()
+    week = Field()
+    type_ = Field()
