@@ -20,7 +20,14 @@ class GoodsUrlPipeline(object):
     def process_item(self, item, spider):
         # 保存路径：
         # images/<brand>/<number>/url.txt
-        filepath = IMAGES_STORE + '/' + item['brand'] + '/' + item['art_no']
+        filepath = file_path(
+            item.get('brand'),
+            item.get('season'),
+            item.get('week'),
+            item.get('title'),
+            item.get('art_no'),
+        )
+        filepath = IMAGES_STORE + '/' + filepath
         try:
             makedirs(filepath)
         except OSError:
@@ -34,8 +41,11 @@ class GoodsUrlPipeline(object):
 class GoodsImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         brand = request.meta['brand']
-        art_no = request.meta['art_no']
-        file_name = brand + '/' + art_no + '/' + request.url.split('/')[-1]
+        title = request.meta['title']
+        art_no = request.meta.get('art_no')
+        season = request.meta.get('season')
+        week = request.meta.get('week')
+        file_name = file_path(brand, season, week, title, art_no, request.url.split('/')[-1])
         return file_name
 
     def item_completed(self, results, item, info):
@@ -54,5 +64,24 @@ class GoodsImagesPipeline(ImagesPipeline):
             yield Request(image_url,
                           meta={'brand': item.get('brand'),
                                 'title': item.get('title'),
-                                'art_no': item.get('art_no'),}
+                                'art_no': item.get('art_no'),
+                                'season': item.get('season'),
+                                'week': item.get('week')}
                           )
+
+
+def file_path(brand=None, season=None, week=None, title=None, art_no=None, filename=None):
+    filepath = ''
+    if brand:
+        filepath += brand + '/'
+    if season:
+        filepath += season + '/'
+    if week:
+        filepath += week + '/'
+    if art_no:
+        filepath += art_no + '/'
+    else:  # title is not None.
+        filepath += title + '/'
+    if filename:
+        filepath += filename
+    return filepath
