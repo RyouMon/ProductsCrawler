@@ -10,7 +10,7 @@ from GoodsCrawler.items import SupremeItem
 class SupremeSpider(CrawlSpider):
     name = 'supreme'
     allowed_domains = ['supremecommunity.com']
-    start_urls = ['https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-20/']
+    start_urls = ['https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-03-05/']
     details_base_url = 'https://www.supremecommunity.com/season/itemdetails/'
     image_base_url = 'https://www.supremecommunity.com'
     rules = (
@@ -18,7 +18,7 @@ class SupremeSpider(CrawlSpider):
 
     def parse(self, response):
         details = response.xpath('//div[@class="card-details"]/@data-itemid')
-        for detail_no in details[:6]:
+        for detail_no in details:
             yield Request(
                 url=self.details_base_url+detail_no.get(),
                 callback=self.parse_item
