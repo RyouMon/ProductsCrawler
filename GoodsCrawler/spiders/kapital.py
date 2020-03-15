@@ -12,9 +12,6 @@ from GoodsCrawler.itemloaders import KapitalLoader
 class KapitalSpider(CrawlSpider):
     name = 'kapital'
     allowed_domains = ['kapital-webshop.jp']
-    start_urls = []
-
-    # 动态构建Rule对象可以实现特定商品的爬取。
     rules = (
         Rule(
             LinkExtractor(
@@ -25,6 +22,12 @@ class KapitalSpider(CrawlSpider):
             follow=True
         ),
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+        # 动态构建Rule对象可以实现特定商品的爬取。
+        if kwargs.get("rules"):
+            self.rules = (rule for rule in kwargs["rules"])
 
     def start_requests(self):
         base_url = 'https://www.kapital-webshop.jp/category/MENSALL/?'
