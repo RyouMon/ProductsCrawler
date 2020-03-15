@@ -3,23 +3,10 @@ from urllib.parse import urlencode
 
 from scrapy import Request
 from scrapy.spiders import CrawlSpider, Rule
-from scrapy.loader import ItemLoader
-from scrapy.loader.processors import TakeFirst, Compose, Identity
 from scrapy.linkextractors import LinkExtractor
 
 from GoodsCrawler.items import KapitalItem
-
-
-class GoodsLoader(ItemLoader):
-    default_output_processor = TakeFirst()
-
-
-class KapitalLoader(GoodsLoader):
-    art_no_out = Compose(
-        TakeFirst(),
-        lambda x: x.strip(),
-    )
-    images_out = Identity()
+from GoodsCrawler.itemloaders import KapitalLoader
 
 
 class KapitalSpider(CrawlSpider):
@@ -27,6 +14,7 @@ class KapitalSpider(CrawlSpider):
     allowed_domains = ['kapital-webshop.jp']
     start_urls = []
 
+    # 动态构建Rule对象可以实现特定商品的爬取。
     rules = (
         Rule(
             LinkExtractor(
