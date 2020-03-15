@@ -14,7 +14,7 @@ BOT_NAME = 'GoodsCrawler'
 SPIDER_MODULES = ['GoodsCrawler.spiders']
 NEWSPIDER_MODULE = 'GoodsCrawler.spiders'
 
-IMAGES_STORE = r'E:\GoodsCrawlerImages'
+IMAGES_STORE = r'E:\Image'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'GoodsCrawler (+http://www.yourdomain.com)'
