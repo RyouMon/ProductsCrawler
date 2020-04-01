@@ -9,6 +9,7 @@ class GoodsLoader(ItemLoader):
 class SupremeLoader(GoodsLoader):
     title_out = Compose(
         TakeFirst(),
+        lambda x: x.strip(),
         lambda x: x.replace("*", "-"),
         lambda x: x.replace("/", "-"),
     )
