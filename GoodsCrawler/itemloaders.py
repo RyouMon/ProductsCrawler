@@ -1,9 +1,15 @@
+import re
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import *
 
 
 class GoodsLoader(ItemLoader):
     default_output_processor = TakeFirst() # 默认使用SelectorList.get()方法
+
+
+def supreme_week_processor(value):
+    match = re.findall(r"\((.*?)\)", value)
+    return match[0]
 
 
 class SupremeLoader(GoodsLoader):
@@ -14,6 +20,7 @@ class SupremeLoader(GoodsLoader):
         lambda x: x.replace("/", "-"),
     )
     images_out = MapCompose(lambda x: x.replace("thumb", "sqr"))  # 把缩略图的链接替换为源图的链接
+    week_out = Compose(TakeFirst(), supreme_week_processor)
 
 
 class KapitalLoader(GoodsLoader):
