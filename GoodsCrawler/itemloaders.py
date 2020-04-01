@@ -13,3 +13,11 @@ class SupremeLoader(GoodsLoader):
         lambda x: x.replace("/", "-"),
     )
     images_out = MapCompose(lambda x: x.replace("thumb", "sqr"))  # 把缩略图的链接替换为源图的链接
+
+
+class KapitalLoader(GoodsLoader):
+    art_no_out = Compose(
+        TakeFirst(),
+        lambda x: x.strip(),
+    )
+    images_out = Identity()
