@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for GoodsCrawler project
+# Scrapy settings for ProductCrawler project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,15 +9,15 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'GoodsCrawler'
+BOT_NAME = 'ProductCrawler'
 
-SPIDER_MODULES = ['GoodsCrawler.spiders']
-NEWSPIDER_MODULE = 'GoodsCrawler.spiders'
+SPIDER_MODULES = ['ProductCrawler.spiders']
+NEWSPIDER_MODULE = 'ProductCrawler.spiders'
 
 IMAGES_STORE = r'C:\Users\l1048\章自豪团队\章自豪美术协作 - 文档\Z 官网图备份'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'GoodsCrawler (+http://www.yourdomain.com)'
+#USER_AGENT = 'ProductCrawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -48,13 +48,13 @@ DOWNLOAD_DELAY = 0.5
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'GoodsCrawler.middlewares.GoodscrawlerSpiderMiddleware': 543,
+#    'ProductCrawler.middlewares.ProductCrawlerSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'GoodsCrawler.middlewares.GoodscrawlerDownloaderMiddleware': 543,
+#    'ProductCrawler.middlewares.ProductCrawlerDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -66,8 +66,8 @@ DOWNLOAD_DELAY = 0.5
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'GoodsCrawler.pipelines.GoodsUrlPipeline': 300,
-    'GoodsCrawler.pipelines.GoodsImagesPipeline': 301,
+    'ProductCrawler.pipelines.GoodsUrlPipeline': 300,
+    'ProductCrawler.pipelines.GoodsImagesPipeline': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

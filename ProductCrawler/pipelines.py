@@ -8,7 +8,7 @@ from os import mkdir, makedirs
 from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
-from GoodsCrawler.settings import IMAGES_STORE
+from ProductCrawler.settings import IMAGES_STORE
 
 class GoodscrawlerPipeline(object):
     def process_item(self, item, spider):

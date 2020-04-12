@@ -5,8 +5,8 @@ from scrapy import Request
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from GoodsCrawler.items import KapitalItem
-from GoodsCrawler.itemloaders import KapitalLoader
+from ProductCrawler.items import KapitalItem
+from ProductCrawler.itemloaders import KapitalLoader
 
 
 class KapitalSpider(CrawlSpider):

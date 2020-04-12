@@ -3,8 +3,8 @@ import re
 from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from GoodsCrawler.itemloaders import SupremeLoader
-from GoodsCrawler.items import SupremeItem
+from ProductCrawler.itemloaders import SupremeLoader
+from ProductCrawler.items import SupremeItem
 
 
 class SupremeSpider(CrawlSpider):
