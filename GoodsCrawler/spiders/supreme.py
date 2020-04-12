@@ -10,11 +10,14 @@ from GoodsCrawler.items import SupremeItem
 class SupremeSpider(CrawlSpider):
     name = 'supreme'
     allowed_domains = ['supremecommunity.com']
-    start_urls = ['https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-03-05/']
     details_base_url = 'https://www.supremecommunity.com/season/itemdetails/'
     image_base_url = 'https://www.supremecommunity.com'
-    rules = (
-    )
+
+    def __init__(self, start_urls):
+        super(SupremeSpider, self).__init__()
+        self.start_urls = start_urls
+        self.season = re.findall(r'season/(.*?)/', start_urls[-1]).pop()
+        self.rules = ()
 
     def parse(self, response):
         details = response.xpath('//div[@class="card-details"]/@data-itemid')
@@ -32,7 +35,7 @@ class SupremeSpider(CrawlSpider):
         loader.add_xpath('price', '//span[@class="price-label"]/text()')
         loader.add_value('image_base_url', self.image_base_url)
         loader.add_xpath('images', '//div[@class="carousel-inner"]//img/@src')
-        loader.add_value('season', re.findall(r'season/(.*?)/', SupremeSpider.start_urls[0]).pop())
+        loader.add_value('season', self.season)
         loader.add_xpath('week', '//h2[@class="details-release-small"]/span/text()')
         yield loader.load_item()
 
