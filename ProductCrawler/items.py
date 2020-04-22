@@ -15,6 +15,10 @@ class GoodsItem(Item):
     item_url = Field()
     images = Field()
     price = Field()
+    image_base_url = Field()
+    season = Field()
+    week = Field()
+    type_ = Field()
 
 
 class KapitalItem(GoodsItem):
