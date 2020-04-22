@@ -4,7 +4,7 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy import Request
-from ..items import GoodsItem
+from ..items import ProductItem
 from ..itemloaders import GallianolandorLoader
 
 
@@ -42,7 +42,7 @@ class GlldSpider(CrawlSpider):
                 yield Request(url, self.parse)
 
     def parse_item(self, response):
-        loader = GallianolandorLoader(item=GoodsItem(), response=response)
+        loader = GallianolandorLoader(item=ProductItem(), response=response)
         loader.add_value('brand', 'GallianoLandor')
         loader.add_xpath(
             'title',

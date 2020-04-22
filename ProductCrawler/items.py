@@ -8,7 +8,7 @@
 from scrapy import Item, Field
 
 
-class GoodsItem(Item):
+class ProductItem(Item):
     brand = Field()
     title = Field()
     art_no = Field()
@@ -21,5 +21,5 @@ class GoodsItem(Item):
     type_ = Field()
 
 
-class KapitalItem(GoodsItem):
+class KapitalItem(ProductItem):
     image_base_url = Field()
