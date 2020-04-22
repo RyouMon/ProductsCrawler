@@ -4,7 +4,7 @@ from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from ProductCrawler.itemloaders import SupremeLoader
-from ProductCrawler.items import SupremeItem
+from ProductCrawler.items import GoodsItem
 
 
 class SupremeSpider(CrawlSpider):
@@ -28,7 +28,7 @@ class SupremeSpider(CrawlSpider):
             )
 
     def parse_item(self, response):
-        loader = SupremeLoader(item=SupremeItem(), response=response)
+        loader = SupremeLoader(item=GoodsItem(), response=response)
         loader.add_value('brand', 'supreme')
         loader.add_xpath('title', '//h1[@class="detail-title"]/text()')
         loader.add_value('item_url', response.url)
