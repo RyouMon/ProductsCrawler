@@ -4,6 +4,8 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy import Request
+from ..items import GoodsItem
+from ..itemloaders import GallianolandorLoader
 
 
 class GlldSpider(CrawlSpider):
@@ -40,9 +42,27 @@ class GlldSpider(CrawlSpider):
                 yield Request(url, self.parse)
 
     def parse_item(self, response):
-        item = {}
-        print("我被调用了")
-        #item['domain_id'] = response.xpath('//input[@id="sid"]/@value').get()
-        #item['name'] = response.xpath('//div[@id="name"]').get()
-        #item['description'] = response.xpath('//div[@id="description"]').get()
-        return item
+        loader = GallianolandorLoader(item=GoodsItem(), response=response)
+        loader.add_value('brand', 'GallianoLandor')
+        loader.add_xpath(
+            'title',
+            r'//h1[@class="product-single__title wvendor"]/text()'
+        )
+        loader.add_value('art_no', None)
+        loader.add_value('item_url', response.url)
+        loader.add_xpath(
+            'images',
+            r'//ul[@class="product-single__thumbs grid-uniform"]//a/@href'
+        )
+        loader.add_xpath(
+            'price',
+            r'//span[@class="product-price"]/text()'
+        )
+        loader.add_value('image_base_url', 'https:')
+        loader.add_xpath(
+            'season',
+            r'//a[@class="collection-title text-center"]/text()'
+        )
+        loader.add_value('week', None)
+        loader.add_value('type_', None)
+        yield loader.load_item()
