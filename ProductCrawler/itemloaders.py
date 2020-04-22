@@ -29,3 +29,7 @@ class KapitalLoader(GoodsLoader):
         lambda x: x.strip(),
     )
     images_out = Identity()
+
+
+class GallianolandorLoader(GoodsLoader):
+    pass
