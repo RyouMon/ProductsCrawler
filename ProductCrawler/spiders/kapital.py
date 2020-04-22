@@ -5,7 +5,7 @@ from scrapy import Request
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from ProductCrawler.items import KapitalItem
+from ProductCrawler.items import ProductItem
 from ProductCrawler.itemloaders import KapitalLoader
 
 
@@ -46,7 +46,7 @@ class KapitalSpider(CrawlSpider):
             yield Request(url, self.parse)
 
     def parse_item(self, response):
-        loader = KapitalLoader(item=KapitalItem(), response=response)
+        loader = KapitalLoader(item=ProductItem(), response=response)
         loader.add_value('brand', 'kapital')
         loader.add_xpath('title', '//h2[@id="itemName"]/text()')
         loader.add_xpath('art_no', '//p[@class="appeal"]/text()')

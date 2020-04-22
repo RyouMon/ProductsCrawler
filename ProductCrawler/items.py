@@ -19,7 +19,3 @@ class ProductItem(Item):
     season = Field()
     week = Field()
     type_ = Field()
-
-
-class KapitalItem(ProductItem):
-    image_base_url = Field()
