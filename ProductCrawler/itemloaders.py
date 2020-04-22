@@ -32,4 +32,14 @@ class KapitalLoader(GoodsLoader):
 
 
 class GallianolandorLoader(GoodsLoader):
-    pass
+    price_out = Compose(
+        TakeFirst(),
+        lambda x: x.strip(),
+    )
+    images_out = MapCompose(
+        lambda x: x.split('?')[0]  # 去除image_url的query部分
+    )
+    season_out = Compose(
+        TakeFirst(),
+        lambda x: x.replace('/', '')
+    )
