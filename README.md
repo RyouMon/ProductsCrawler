@@ -3,11 +3,12 @@
 ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品信息，它包含一系列爬虫，爬虫均以商品的品牌来命名。
 
 目前支持的爬虫有
-+ Supreme  
++ supreme  
 
 
 正在开发中的爬虫有
-+ Kapital
++ kapital
++ gallianolandor
 
 ## 注意
 
