@@ -10,6 +10,9 @@ from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 from ProductCrawler.settings import IMAGES_STORE
 
+ILLEGAL_FILENAME_CHARS = {"?", "/", "\\", ":", "*", ">", "<", "\""}
+
+
 class GoodscrawlerPipeline(object):
     def process_item(self, item, spider):
         return item
@@ -42,10 +45,10 @@ class GoodsImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         brand = request.meta['brand']
         title = request.meta['title']
-        art_no = request.meta.get('art_no')
         season = request.meta.get('season')
         week = request.meta.get('week')
-        file_name = file_path(brand, season, week, title, art_no, request.url.split('/')[-1])
+        image_name = legal_name(request.url.split('/')[-1])
+        file_name = file_path(brand, season, week, title, image_name)
         return file_name
 
     def item_completed(self, results, item, info):
@@ -70,7 +73,7 @@ class GoodsImagesPipeline(ImagesPipeline):
                           )
 
 
-def file_path(brand=None, season=None, week=None, title=None, art_no=None, filename=None):
+def file_path(brand=None, season=None, week=None, title=None, filename=None):
     filepath = ''
     if brand:
         filepath += brand + '/'
@@ -78,10 +81,22 @@ def file_path(brand=None, season=None, week=None, title=None, art_no=None, filen
         filepath += season + '/'
     if week:
         filepath += week + '/'
-    if art_no:
-        filepath += art_no + '/'
-    else:  # title is not None.
+    if title:
         filepath += title + '/'
     if filename:
         filepath += filename
     return filepath
+
+
+def legal_name(filename):
+    """
+    返回合法的文件名
+    :param filename: 可能包含非法字符的文件名字符串。
+    :return: 合法的文件名字符串。
+    """
+    filename_char_set = set(filename)
+    illegal_chars = filename_char_set & ILLEGAL_FILENAME_CHARS
+    if illegal_chars:
+        for char in illegal_chars:
+            filename = filename.replace(char, "_")
+    return filename
