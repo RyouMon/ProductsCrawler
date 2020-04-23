@@ -19,7 +19,7 @@ class SupremeSpider(CrawlSpider):
         self.season = re.findall(r'season/(.*?)/', start_urls[-1]).pop()
         self.rules = ()
 
-    def parse(self, response):
+    def parse_start_url(self, response):
         details = response.xpath('//div[@class="card-details"]/@data-itemid')
         for detail_no in details:
             yield Request(
