@@ -19,6 +19,23 @@ class SupremeSpider(CrawlSpider):
         self.season = re.findall(r'season/(.*?)/', start_urls[-1]).pop()
         self.rules = ()
 
+    def parse_start_url(self, response):
+        """
+        分析当季的页面，生成每一周的请求对象。
+        :param response: 属性start_urls中url的响应对象。
+        :return: 每一周的请求对象，回调方法为parse_week()。
+        """
+        # 得到每一周的相对地址
+        weeks = response.xpath(
+            r'//div[@class="col-xs-12 col-sm-12 col-md-10 box-list scapp-main-cont"]//a/@href'
+        ).getall()
+        # 拼接为绝对路径并返回请求对象
+        for week in weeks:
+            yield Request(
+                url=self.image_base_url+week,
+                callback=self.parse_week
+            )
+
     def parse_week(self, response):
         """
         分析每个周的页面，返回对每个商品的请求。
