@@ -19,7 +19,12 @@ class SupremeSpider(CrawlSpider):
         self.season = re.findall(r'season/(.*?)/', start_urls[-1]).pop()
         self.rules = ()
 
-    def parse_start_url(self, response):
+    def parse_week(self, response):
+        """
+        分析每个周的页面，返回对每个商品的请求。
+        :param response: parse_start_url()方法中返回的请求对象对应的响应对象。
+        :return: 对商品的请求对象，回调方法为parse_item()。
+        """
         details = response.xpath('//div[@class="card-details"]/@data-itemid')
         for detail_no in details:
             yield Request(
