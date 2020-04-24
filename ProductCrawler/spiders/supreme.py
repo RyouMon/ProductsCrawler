@@ -20,6 +20,28 @@ class SupremeSpider(CrawlSpider):
         self.rules = ()
 
     def parse_start_url(self, response):
+        """
+        分析当季的页面，生成每一周的请求对象。
+        :param response: 由属性start_urls中url生成的响应对象。
+        :return: 每一周的请求对象，回调方法为parse_week()。
+        """
+        # 得到每一周的相对地址
+        weeks = response.xpath(
+            r'//div[@class="col-xs-12 col-sm-12 col-md-10 box-list scapp-main-cont"]//a/@href'
+        ).getall()
+        # 拼接为绝对路径并返回请求对象
+        for week in weeks:
+            yield Request(
+                url=self.image_base_url+week,
+                callback=self.parse_week
+            )
+
+    def parse_week(self, response):
+        """
+        分析每一周的页面，返回对每一个商品的请求。
+        :param response: parse_start_url()方法中返回的请求对象对应的响应对象。
+        :return: 对商品的请求对象，回调方法为parse_item()。
+        """
         details = response.xpath('//div[@class="card-details"]/@data-itemid')
         for detail_no in details:
             yield Request(
