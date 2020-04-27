@@ -29,10 +29,16 @@ class SupremeSpider(CrawlSpider):
         weeks = response.xpath(
             r'//div[@class="col-xs-12 col-sm-12 col-md-10 box-list scapp-main-cont"]//a/@href'
         ).getall()
-        # 拼接为绝对路径并返回请求对象
-        for week in weeks:
+        # 判断该页面是否应该直接交给parse_week()方法进行解析
+        if weeks:
+            for week in weeks:
+                yield Request(
+                    url=self.image_base_url+week,
+                    callback=self.parse_week
+                )
+        else:
             yield Request(
-                url=self.image_base_url+week,
+                url=response.url,
                 callback=self.parse_week
             )
 
@@ -60,6 +66,3 @@ class SupremeSpider(CrawlSpider):
         loader.add_value('season', self.season)
         loader.add_xpath('week', '//h2[@class="details-release-small"]/span/text()')
         yield loader.load_item()
-
-
-
