@@ -66,8 +66,8 @@ DOWNLOAD_DELAY = 0.5
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'ProductCrawler.pipelines.GoodsUrlPipeline': 300,
-    'ProductCrawler.pipelines.GoodsImagesPipeline': 301,
+    'ProductCrawler.pipelines.ProductUrlPipeline': 300,
+    'ProductCrawler.pipelines.ProductImagesPipeline': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
