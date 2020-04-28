@@ -23,19 +23,13 @@ class GoodsUrlPipeline(object):
     def process_item(self, item, spider):
         # 保存路径：
         # images/<brand>/<number>/url.txt
-        filepath = file_path(
-            item.get('brand'),
-            item.get('season'),
-            item.get('week'),
-            item.get('title'),
-            item.get('art_no'),
-        )
+        filepath = file_path(item)
         filepath = IMAGES_STORE + '/' + filepath
         try:
             makedirs(filepath)
         except OSError:
             pass
-        filename =  filepath + '/url.txt'
+        filename = filepath + '/url.txt'
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(item['item_url'])
         return item
@@ -43,12 +37,8 @@ class GoodsUrlPipeline(object):
 
 class GoodsImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
-        brand = request.meta['brand']
-        title = request.meta['title']
-        season = request.meta.get('season')
-        week = request.meta.get('week')
         image_name = legal_name(request.url.split('/')[-1])
-        file_name = file_path(brand, season, week, title, image_name)
+        file_name = file_path(request.meta, image_name)
         return file_name
 
     def item_completed(self, results, item, info):
@@ -69,11 +59,24 @@ class GoodsImagesPipeline(ImagesPipeline):
                                 'title': item.get('title'),
                                 'art_no': item.get('art_no'),
                                 'season': item.get('season'),
-                                'week': item.get('week')}
+                                'week': item.get('week'),
+                                'category': item.get('category')}
                           )
 
 
-def file_path(brand=None, season=None, week=None, title=None, filename=None):
+def file_path(info, filename=None):
+    """
+    传入一个包含Item信息的字典，为商品选择一个保存的位置
+    :param info: Request.meta or item object.
+    :param filename: file name.
+    :return: 相对于IMAGE_STORE的路径
+    """
+    brand = info['brand']
+    title = info.get('title')
+    art_no = info.get('art_no')
+    season = info.get('season')
+    week = info.get('week')
+    category = info.get('category')
     filepath = ''
     if brand:
         filepath += brand + '/'
@@ -81,8 +84,14 @@ def file_path(brand=None, season=None, week=None, title=None, filename=None):
         filepath += season + '/'
     if week:
         filepath += week + '/'
-    if title:
+    elif category:
+        filepath += category + '/'
+    if art_no:
+        filepath += art_no + '/'
+    elif title:
         filepath += title + '/'
+    else:
+        raise TypeError("至少要提供title与art_no的其中一个")
     if filename:
         filepath += filename
     return filepath
