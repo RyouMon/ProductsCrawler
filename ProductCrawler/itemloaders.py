@@ -29,6 +29,11 @@ class KapitalLoader(GoodsLoader):
         lambda x: x.strip(),
     )
     images_out = Identity()
+    category_out = Compose(
+        TakeFirst(),
+        lambda x: re.findall(r'category/(.*?)/', x),
+        lambda x: x[0]
+    )
 
 
 class GallianolandorLoader(GoodsLoader):
