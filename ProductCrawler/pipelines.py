@@ -13,12 +13,7 @@ from ProductCrawler.settings import IMAGES_STORE
 ILLEGAL_FILENAME_CHARS = {"?", "/", "\\", ":", "*", ">", "<", "\""}
 
 
-class GoodscrawlerPipeline(object):
-    def process_item(self, item, spider):
-        return item
-
-
-class GoodsUrlPipeline(object):
+class ProductUrlPipeline(object):
     """把商品的网址保存为txt文件"""
     def process_item(self, item, spider):
         # 保存路径：
@@ -35,7 +30,7 @@ class GoodsUrlPipeline(object):
         return item
 
 
-class GoodsImagesPipeline(ImagesPipeline):
+class ProductImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         image_name = legal_name(request.url.split('/')[-1])
         file_name = file_path(request.meta, image_name)
