@@ -41,4 +41,5 @@ class KapitalSpider(CrawlSpider):
         loader.add_value('item_url', response.url)
         loader.add_xpath('images', '//div[@class="thumb_list"]//img/@src')
         loader.add_value('image_base_url', 'https://www.kapital-webshop.jp/')
+        loader.add_value('category', response.url)
         yield loader.load_item()
