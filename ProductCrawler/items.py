@@ -18,4 +18,4 @@ class ProductItem(Item):
     image_base_url = Field()
     season = Field()
     week = Field()
-    type_ = Field()
+    category = Field()
