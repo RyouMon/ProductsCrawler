@@ -3,7 +3,7 @@ from scrapy.loader import ItemLoader
 from scrapy.loader.processors import *
 
 
-class GoodsLoader(ItemLoader):
+class ProductLoader(ItemLoader):
     default_output_processor = TakeFirst() # 默认使用SelectorList.get()方法
 
 
@@ -12,7 +12,7 @@ def supreme_week_processor(value):
     return match[0]
 
 
-class SupremeLoader(GoodsLoader):
+class SupremeLoader(ProductLoader):
     title_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
@@ -23,7 +23,7 @@ class SupremeLoader(GoodsLoader):
     week_out = Compose(TakeFirst(), supreme_week_processor)
 
 
-class KapitalLoader(GoodsLoader):
+class KapitalLoader(ProductLoader):
     art_no_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
@@ -36,7 +36,7 @@ class KapitalLoader(GoodsLoader):
     )
 
 
-class GallianolandorLoader(GoodsLoader):
+class GallianolandorLoader(ProductLoader):
     price_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
