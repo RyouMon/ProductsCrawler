@@ -12,38 +12,26 @@ from ProductCrawler.itemloaders import KapitalLoader
 class KapitalSpider(CrawlSpider):
     name = 'kapital'
     allowed_domains = ['kapital-webshop.jp']
-    rules = (
+    rules = [
         Rule(
             LinkExtractor(
                 allow=r'.*html',
                 restrict_xpaths='//ul[@class="item_list clearfix"]/li//div[@class="img_inner"]/a'
             ),
             callback='parse_item',
-            follow=True
         ),
-    )
+        Rule(
+            LinkExtractor(
+                restrict_xpaths='//div[@class="pager"]//a'
+            ),
+            callback='parse',
+            follow=True
+        )
+    ]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, start_urls, **kwargs):
         super().__init__()
-        # 动态构建Rule对象可以实现特定商品的爬取。
-        if kwargs.get("rules"):
-            self.rules = (rule for rule in kwargs["rules"])
-
-    def start_requests(self):
-        base_url = 'https://www.kapital-webshop.jp/category/MENSALL/?'
-        query = {
-            'SEARCH_MAX_ROW_LIST': 30,
-            'item_list_mode': 2,
-            'sort_order': 1,
-            'request': 'page',
-            'next_page': 1
-        }
-        # 改变Query的next_page参数即可实现横向爬取
-        # 其他参数无需变化，参考官网的URL即可。
-        for i in range(1, 2):
-            query['next_page'] = i
-            url = base_url + urlencode(query)
-            yield Request(url, self.parse)
+        self.start_urls = start_urls
 
     def parse_item(self, response):
         loader = KapitalLoader(item=ProductItem(), response=response)
@@ -53,4 +41,5 @@ class KapitalSpider(CrawlSpider):
         loader.add_value('item_url', response.url)
         loader.add_xpath('images', '//div[@class="thumb_list"]//img/@src')
         loader.add_value('image_base_url', 'https://www.kapital-webshop.jp/')
+        loader.add_value('category', response.url)
         yield loader.load_item()
