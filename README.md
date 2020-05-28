@@ -41,7 +41,7 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
 
 命令行执行命令：
 
-    $ python3 crawler.py brand start_url...
+    $ python3 crawl.py brand start_url...
 
 把`brand`替换为品牌名  
 把`start_url`替换为要开始爬取的网页
@@ -50,19 +50,19 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
 ### Supreme
 爬取某一季所有的商品  
 
-    $ python3 crawler.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplists/
+    $ python3 crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplists/
 爬取某一周所有的商品  
 
-    $ python3 crawler.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
+    $ python3 crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
 
 ### Kapital
 爬取某一分类下的所有商品
 
-    $ python3 crawler.py kapital https://www.kapital-webshop.jp/category/W_COAT/
+    $ python3 crawl.py kapital https://www.kapital-webshop.jp/category/W_COAT/
 
 ### Nike
 爬取当前搜索款式的商品（包括所有颜色）
 
-    $ python3 crawler.py nike https://www.nike.com/cn/w?q=CU6525&vst=CU6525
+    $ python3 crawl.py nike https://www.nike.com/cn/w?q=CU6525&vst=CU6525
     
 > 这个项目以后会给团队使用，大家都是小白，我也会提供一个从GUI启动爬虫的方式，或许也有更好的方案。
