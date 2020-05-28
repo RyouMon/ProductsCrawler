@@ -4,7 +4,8 @@ from scrapy.loader.processors import *
 
 
 class ProductLoader(ItemLoader):
-    default_output_processor = TakeFirst() # 默认使用SelectorList.get()方法
+    # use SelectorList.get() default
+    default_output_processor = TakeFirst()
 
 
 def supreme_week_processor(value):
@@ -47,4 +48,15 @@ class GallianolandorLoader(ProductLoader):
     season_out = Compose(
         TakeFirst(),
         lambda x: x.replace('/', '')
+    )
+
+
+class NikeLoader(ProductLoader):
+    images_out = Compose(
+        Identity(),
+        lambda urls: [url for url in urls if 'LOADING' not in url]
+    )
+    art_no_out = Compose(
+        TakeFirst(),
+        lambda x: re.search(r'.{6}-.{3}', x).group()
     )

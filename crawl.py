@@ -5,12 +5,14 @@ import sys
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from ProductCrawler.arg_parser import parse
+from ProductCrawler.utils import spider_settings
 
 
 def run():
     name_space = parse.parse_args(sys.argv[1:])
     brand = name_space.brand
     project_settings = get_project_settings()
+    project_settings.update(spider_settings(brand))
     process = CrawlerProcess(project_settings)
 
     process.crawl(brand, **{'start_urls': name_space.start_urls})
