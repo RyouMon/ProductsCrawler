@@ -17,35 +17,66 @@ def file_path(info, filename=None):
     season = info.get('season')
     week = info.get('week')
     category = info.get('category')
-    filepath = ''
+    path = ''
     if brand:
-        filepath += brand + '/'
+        path += brand + '/'
     if season:
-        filepath += season + '/'
+        path += season + '/'
     if week:
-        filepath += week + '/'
+        path += week + '/'
     elif category:
-        filepath += category + '/'
-    if art_no:
-        filepath += art_no + '/'
-    elif title:
-        filepath += title + '/'
+        path += category + '/'
+    if art_no and title:
+        path += art_no + '-' + title + '/'
+    elif art_no and title is None:
+        path += art_no + '/'
+    elif art_no is None and title:
+        path += title + '/'
     else:
-        raise TypeError("至少要提供title与art_no的其中一个")
+        raise TypeError("At least one of 'title' and 'art_no' must be provided")
     if filename:
-        filepath += filename
-    return filepath
+        path += filename
+    return path
 
 
-def legal_name(filename):
+def legal_name(url):
     """
-    返回合法的文件名
-    :param filename: 可能包含非法字符的文件名字符串。
-    :return: 合法的文件名字符串。
+    use request url, return a legal file name
+    :param url: request url
+    :return: filename -> str
     """
+    parts = url.split('/')
+    if 'nike' in url:
+        filename = parts[-2] + parts[-1]
+    else:
+        filename = parts[-1]
     filename_char_set = set(filename)
     illegal_chars = filename_char_set & ILLEGAL_FILENAME_CHARS
     if illegal_chars:
         for char in illegal_chars:
             filename = filename.replace(char, "_")
     return filename
+
+
+def spider_settings(name):
+    """
+    get custom spider settings
+    :param name: name of spider
+    :return: settings -> dict
+    """
+    settings = dict()
+    settings.update(enable_middle_wares(name))
+    return settings
+
+
+def enable_middle_wares(name):
+    """
+    enable middle wares for spider
+    :param name: name of spider
+    :return: middle wares setting -> dict
+    """
+    if name == 'nike':
+        return dict(
+            DOWNLOADER_MIDDLEWARES={
+                'ProductCrawler.middlewares.SeleniumDownloaderMiddleware': 543,
+            })
