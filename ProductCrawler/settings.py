@@ -16,8 +16,11 @@ NEWSPIDER_MODULE = 'ProductCrawler.spiders'
 
 IMAGES_STORE = r'products'
 
+SELENIUM_TIMEOUT = 20
+CHROME_OPTIONS = ['--headless']
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ProductCrawler (+http://www.yourdomain.com)'
+# USER_AGENT = 'ProductCrawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
