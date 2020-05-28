@@ -31,7 +31,7 @@ class ProductUrlPipeline(object):
 
 class ProductImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
-        image_name = legal_name(request.url.split('/')[-1])
+        image_name = legal_name(request.url)
         file_name = file_path(request.meta, image_name)
         return file_name
 
