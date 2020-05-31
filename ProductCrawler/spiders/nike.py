@@ -12,7 +12,7 @@ class NikeSpider(CrawlSpider):
 
     rules = (
         Rule(
-            LinkExtractor(restrict_xpaths=r'//div[@class="product-card__body"]', deny=r'.+jpg'),
+            LinkExtractor(restrict_xpaths=r'//div[contains(@class, "product-grid__items")]', deny=r'.+jpg'),
             callback='parse_item',
             follow=True
         ),
@@ -30,7 +30,7 @@ class NikeSpider(CrawlSpider):
 
     def parse_item(self, response):
         loader = NikeLoader(item=ProductItem(), response=response)
-        loader.add_value('brand', 'nike')
+        loader.add_value('brand', 'Nike')
         loader.add_value('title', self.parse_title(response))
         loader.add_xpath('art_no', '//li[@class="description-preview__style-color ncss-li"]/text()')
         loader.add_value('item_url', response.url)
