@@ -8,6 +8,7 @@
 from scrapy import signals
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+import time
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
@@ -135,7 +136,9 @@ class SeleniumDownloaderMiddleware(object):
         self.logger.debug('Chrome is starting')
         self.browser.get(request.url)
         self.actions.send_keys(Keys.END)
+        self.actions.send_keys(Keys.END)
         self.actions.perform()
+        time.sleep(1)
         return HtmlResponse(url=request.url, body=self.browser.page_source, request=request, status=200, encoding='utf-8')
 
     @classmethod
