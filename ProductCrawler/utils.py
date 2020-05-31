@@ -82,3 +82,5 @@ def enable_middle_wares(name):
             DOWNLOADER_MIDDLEWARES={
                 'ProductCrawler.middlewares.SeleniumDownloaderMiddleware': 543,
             })
+    else:
+        return dict()
