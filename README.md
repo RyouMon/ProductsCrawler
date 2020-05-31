@@ -58,7 +58,7 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
 
 一次性爬取多个周的商品
 
-    $ python3 crawl.py supreme supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/ https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-05-21/
+    $ python3 crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/ https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-05-21/
 
 ### Kapital
 爬取某一分类下的所有商品
