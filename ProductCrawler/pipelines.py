@@ -12,8 +12,8 @@ from ProductCrawler.settings import IMAGES_STORE
 from ProductCrawler.utils import file_path, legal_name
 
 
-class ProductUrlPipeline(object):
-    """把商品的网址保存为txt文件"""
+class ProductInfoPipeline(object):
+    """save item info"""
     def process_item(self, item, spider):
         # 保存路径：
         # images/<brand>/<number>/url.txt
@@ -23,9 +23,10 @@ class ProductUrlPipeline(object):
             makedirs(filepath)
         except OSError:
             pass
-        filename = filepath + '/url.txt'
+        filename = filepath + '/info.txt'
         with open(filename, 'w', encoding='utf-8') as f:
-            f.write(item['item_url'])
+            # f.writelines([k + ': ' + str(v) + '\n' for k, v in item.items()])
+            f.write(str(item.items()))
         return item
 
 

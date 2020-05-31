@@ -69,7 +69,7 @@ DOWNLOAD_DELAY = 0.5
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'ProductCrawler.pipelines.ProductUrlPipeline': 300,
+    'ProductCrawler.pipelines.ProductInfoPipeline': 300,
     'ProductCrawler.pipelines.ProductImagesPipeline': 301,
 }
 
