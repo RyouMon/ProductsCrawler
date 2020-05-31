@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from urllib.parse import unquote
+
 
 ILLEGAL_FILENAME_CHARS = {"?", "/", "\\", ":", "*", ">", "<", "\""}
 
@@ -47,7 +49,7 @@ def legal_name(url):
     """
     parts = url.split('/')
     if 'nike' in url:
-        filename = parts[-2] + parts[-1]
+        filename = unquote(parts[-2] + parts[-1])
     else:
         filename = parts[-1]
     filename_char_set = set(filename)
