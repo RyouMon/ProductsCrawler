@@ -9,6 +9,11 @@ from ProductCrawler.itemloaders import NikeLoader
 class NikeSpider(CrawlSpider):
     name = 'nike'
     allowed_domains = ['nike.com']
+    custom_settings = dict(
+            DOWNLOADER_MIDDLEWARES={
+                'ProductCrawler.middlewares.SeleniumDownloaderMiddleware': 543,
+            }
+    )
 
     rules = (
         Rule(
