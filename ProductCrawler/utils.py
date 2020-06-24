@@ -3,7 +3,7 @@
 from urllib.parse import unquote
 
 
-ILLEGAL_FILENAME_CHARS = {"?", "/", "\\", ":", "*", ">", "<", "\""}
+ILLEGAL_FILENAME_CHARS = {"?", "/", "\\", ":", "*", ">", "<", '"'}
 
 
 def file_path(info, filename=None):
@@ -29,35 +29,46 @@ def file_path(info, filename=None):
     elif category:
         path += category + '/'
     if art_no and title:
-        path += art_no + '-' + title + '/'
+        item_folder = art_no + '-' + title
     elif art_no and title is None:
-        path += art_no + '/'
+        item_folder = art_no
     elif art_no is None and title:
-        path += title + '/'
+        item_folder = title
     else:
         raise TypeError("At least one of 'title' and 'art_no' must be provided")
+    path += legal_name(item_folder) + '/'
     if filename:
         path += filename
     return path
 
 
-def legal_name(url):
+def legal_name(name):
     """
-    use request url, return a legal file name
-    :param url: request url
-    :return: filename -> str
+    return a legal file name
+    :param name: string
+    :return: string
+    """
+    filename_char_set = set(name)
+    illegal_chars = filename_char_set & ILLEGAL_FILENAME_CHARS
+    new_name = name
+    if illegal_chars:
+        for char in illegal_chars:
+            new_name = name.replace(char, "_")
+    return new_name
+
+
+def gen_name_from_url(url):
+    """
+    generate a file name use url
+    :param url:
+    :return:
     """
     parts = url.split('/')
     if 'nike' in url:
         filename = unquote(parts[-2] + parts[-1])
     else:
         filename = parts[-1]
-    filename_char_set = set(filename)
-    illegal_chars = filename_char_set & ILLEGAL_FILENAME_CHARS
-    if illegal_chars:
-        for char in illegal_chars:
-            filename = filename.replace(char, "_")
-    return filename
+    return legal_name(filename)
 
 
 def spider_settings(name):
