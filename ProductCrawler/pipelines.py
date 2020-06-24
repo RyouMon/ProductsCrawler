@@ -9,7 +9,7 @@ from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 from ProductCrawler.settings import IMAGES_STORE
-from ProductCrawler.utils import file_path, legal_name
+from ProductCrawler.utils import file_path, gen_name_from_url
 
 
 class ProductInfoPipeline(object):
@@ -32,8 +32,8 @@ class ProductInfoPipeline(object):
 
 class ProductImagesPipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
-        image_name = legal_name(request.url)
-        file_name = file_path(request.meta, image_name)
+        image_name = gen_name_from_url(request.url)
+        file_name = file_path(request.meta['item'], image_name)
         return file_name
 
     def item_completed(self, results, item, info):
@@ -49,11 +49,4 @@ class ProductImagesPipeline(ImagesPipeline):
         else:  # image_base_url is None
             images_url = item['images']
         for image_url in images_url:
-            yield Request(image_url,
-                          meta={'brand': item.get('brand'),
-                                'title': item.get('title'),
-                                'art_no': item.get('art_no'),
-                                'season': item.get('season'),
-                                'week': item.get('week'),
-                                'category': item.get('category')}
-                          )
+            yield Request(image_url, meta={'item': item})
