@@ -69,29 +69,3 @@ def gen_name_from_url(url):
     else:
         filename = parts[-1]
     return legal_name(filename)
-
-
-def spider_settings(name):
-    """
-    get custom spider settings
-    :param name: name of spider
-    :return: settings -> dict
-    """
-    settings = dict()
-    settings.update(enable_middle_wares(name))
-    return settings
-
-
-def enable_middle_wares(name):
-    """
-    enable middle wares for spider
-    :param name: name of spider
-    :return: middle wares setting -> dict
-    """
-    if name == 'nike':
-        return dict(
-            DOWNLOADER_MIDDLEWARES={
-                'ProductCrawler.middlewares.SeleniumDownloaderMiddleware': 543,
-            })
-    else:
-        return dict()
