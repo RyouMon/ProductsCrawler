@@ -1,0 +1,64 @@
+{
+  "items": {
+    "class": "ProductItem",
+    "loader": "SupremeLoader",
+    "attrs": {
+      "brand": {
+        "method": "value",
+        "args": [
+          "supreme"
+        ]
+      },
+      "title": {
+        "method": "xpath",
+        "args": [
+          "//h1[@class=\"detail-title\"]/text()"
+        ]
+      },
+      "art_no": {
+        "method": "",
+        "args": []
+      },
+      "item_url": {
+        "method": "eval",
+        "args": [
+          "response.url"
+        ]
+      },
+      "images": {
+        "method": "xpath",
+        "args": [
+          "//div[@class=\"carousel-inner\"]//img/@src"
+        ]
+      },
+      "price": {
+        "method": "xpath",
+        "args": [
+          "//span[@class=\"price-label\"]/text()"
+        ]
+      },
+      "image_base_url": {
+        "method": "eval",
+        "args": [
+          "spider.image_base_url"
+        ]
+      },
+      "season": {
+        "method": "eval",
+        "args": [
+          "spider.season"
+        ]
+      },
+      "week": {
+        "method": "xpath",
+        "args": [
+          "//h2[@class=\"details-release-small\"]/span/text()"
+        ]
+      },
+      "category": {
+        "method": "",
+        "args": []
+      }
+    }
+  }
+}
