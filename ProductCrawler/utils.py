@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from urllib.parse import unquote
+import json
 
 
 ILLEGAL_FILENAME_CHARS = {"?", "/", "\\", ":", "*", ">", "<", '"'}
@@ -69,3 +70,13 @@ def gen_name_from_url(url):
     else:
         filename = parts[-1]
     return legal_name(filename)
+
+
+def get_spider_cfg(name):
+    """
+    get parse item configuration of a specific spider.
+    :param name: name of spider
+    :return: dictionary of configuration
+    """
+    with open('ProductCrawler/spider_configs/{0}.json'.format(name), encoding='utf-8') as f:
+        return json.load(f)
