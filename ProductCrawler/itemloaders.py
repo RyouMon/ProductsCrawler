@@ -60,3 +60,27 @@ class NikeLoader(ProductLoader):
         TakeFirst(),
         lambda x: re.search(r'.{6}-.{3}', x).group()
     )
+
+
+class BearBrickLoader(ProductLoader):
+    # images output:
+    # 1 original values
+    images_out = Identity()
+
+    # title output:
+    # 1 take first value.
+    # 2 strip text.
+    title_out = Compose(
+        TakeFirst(),
+        lambda x: x.strip()
+    )
+
+    # category input:
+    # 1 take first value
+    # 2 matching size info in this value.
+    # 3 if matched then return sub group, else return string "other".
+    category_in = Compose(
+        TakeFirst(),
+        lambda x: re.search(r'(\d{3}[％%] & )?\d{3,4}[％%]', x),
+        lambda x: x.group() if x else "other",
+    )
