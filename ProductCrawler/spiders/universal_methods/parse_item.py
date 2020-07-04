@@ -6,6 +6,8 @@ from ProductCrawler.itemloaders import *
 
 
 def parse_item(response, spider):
+    spider.logger.info("Parsing Item...")
+
     # use spider name get config from package: parse_item_cfg.
     cfg = get_spider_cfg(spider.name)['items']
 
@@ -27,4 +29,5 @@ def parse_item(response, spider):
             loader.add_value(key, *map(eval, value["args"]))
         else:
             raise ValueError("No such method: {0}".format(value["method"]))
+    spider.logger.info("Loading Item...")
     return loader.load_item()
