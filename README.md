@@ -11,11 +11,11 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
 + kapital
 + gallianolandor
 + nike
++ bearbrick
 
 正在开发的爬虫有：
 
 等待添加的爬虫有：
-+ bearbrick
 + humanmade
 + wtaps
 
@@ -70,4 +70,12 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
 
     $ python3 crawl.py nike https://www.nike.com/cn/w?q=CU6525&vst=CU6525
     
+### BearBrick
+爬取当前分类的所有商品
+
+    $ python3 crawl.py bearbrick http://www.bearbrick.com/product/12_0
+    
+已知问题：BearBrickLoader的category_in无法达到预期的行为。
+
+
 > 这个项目以后会给团队使用，大家都是小白，我也会提供一个从GUI启动爬虫的方式，或许也有更好的方案。
