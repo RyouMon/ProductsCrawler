@@ -4,13 +4,9 @@ from scrapy.loader.processors import *
 
 
 class ProductLoader(ItemLoader):
-    # use SelectorList.get() default
+    # default output:
+    # 1 take first value.
     default_output_processor = TakeFirst()
-
-
-def supreme_week_processor(value):
-    match = re.findall(r"\((.*?)\)", value)
-    return match[0]
 
 
 class SupremeLoader(ProductLoader):
@@ -21,19 +17,31 @@ class SupremeLoader(ProductLoader):
         lambda x: x.replace("/", "-"),
     )
     images_out = MapCompose(lambda x: x.replace("thumb", "sqr"))  # 把缩略图的链接替换为源图的链接
-    week_out = Compose(TakeFirst(), supreme_week_processor)
+    week_out = Compose(
+        TakeFirst(),
+        lambda x: re.findall(r"\((.*?)\)", x)[0]
+    )
 
 
 class KapitalLoader(ProductLoader):
+    # art_no output:
+    # 1 take first value.
+    # 2 strip text.
     art_no_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
     )
+
+    # images output:
+    # 1 original values.
     images_out = Identity()
+
+    # category output:
+    # 1 take first value.
+    # 2 matching category.
     category_out = Compose(
         TakeFirst(),
-        lambda x: re.findall(r'category/(.*?)/', x),
-        lambda x: x[0]
+        lambda x: re.findall(r'category/(.*?)/', x)[0],
     )
 
 
@@ -52,10 +60,17 @@ class GallianolandorLoader(ProductLoader):
 
 
 class NikeLoader(ProductLoader):
+    # images output:
+    # 1 original values.
+    # 2 filter image urls.
     images_out = Compose(
         Identity(),
         lambda urls: [url for url in urls if 'LOADING' not in url]
     )
+
+    # art_no output:
+    # 1 take first value.
+    # 2 marching art_no.
     art_no_out = Compose(
         TakeFirst(),
         lambda x: re.search(r'.{6}-.{3}', x).group()
@@ -64,7 +79,7 @@ class NikeLoader(ProductLoader):
 
 class BearBrickLoader(ProductLoader):
     # images output:
-    # 1 original values
+    # 1 original values.
     images_out = Identity()
 
     # title output:
@@ -76,7 +91,7 @@ class BearBrickLoader(ProductLoader):
     )
 
     # category input:
-    # 1 take first value
+    # 1 take first value.
     # 2 matching size info in this value.
     # 3 if matched then return sub group, else return string "other".
     category_in = Compose(
