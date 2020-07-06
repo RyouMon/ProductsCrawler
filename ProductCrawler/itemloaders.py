@@ -99,3 +99,20 @@ class BearBrickLoader(ProductLoader):
         lambda x: re.search(r'(\d{3}[％%] & )?\d{3,4}[％%]', x),
         lambda x: x.group() if x else "other",
     )
+
+
+class UastoreLoader(ProductLoader):
+    """
+    Item Loader for United Arrows Online Store(store.united-arrows.co.jp).
+    """
+    # images output:
+    # 1 original values.
+    images_out = Identity()
+
+    # brand output:
+    # 1 take first value.
+    # 2 titled brand
+    brand_out = Compose(
+        TakeFirst(),
+        lambda x: x.title()
+    )
