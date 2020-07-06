@@ -6,16 +6,17 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
 
 我会根据自己和自己团队的需求逐步完善这个项目。
 
-目前可以用于简单生产的爬虫有：
-+ supreme  
-+ kapital
-+ gallianolandor
-+ nike
-+ bearbrick
+目前支持的品牌或购物网站有：
++ [supreme](https://www.supremecommunity.com/)
++ [kapital](https://www.kapital-webshop.jp/)
++ [gallianolandor](https://gallianolandor.com/)
++ [nike](https://www.nike.com/cn/)
++ [bearbrick](http://www.bearbrick.com/product/)
++ [united-arrows online store](https://store.united-arrows.co.jp/)
 
 正在开发的爬虫有：
 
-等待添加的爬虫有：
+等待支持的品牌有：
 + humanmade
 + wtaps
 
@@ -77,5 +78,10 @@ ProductCrawler是一个Scrapy项目，目的是帮助电商从业者收集商品
     
 已知问题：BearBrickLoader的category_in无法达到预期的行为。
 
+### United Arrows Online Shop
+爬取当前商品
 
+    $ python3 crawl.py uastore https://store.united-arrows.co.jp/shop/mt/goods.html?gid=52711245
+    
+    
 > 这个项目以后会给团队使用，大家都是小白，我也会提供一个从GUI启动爬虫的方式，或许也有更好的方案。
