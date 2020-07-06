@@ -14,13 +14,23 @@ class ProductLoader(ItemLoader):
 
 
 class SupremeLoader(ProductLoader):
+    # title output:
+    # 1 take first value.
+    # 2 strip text.
     title_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
-        lambda x: x.replace("*", "-"),
-        lambda x: x.replace("/", "-"),
     )
-    images_out = MapCompose(lambda x: x.replace("thumb", "sqr"))  # 把缩略图的链接替换为源图的链接
+
+    # images output:
+    # 1 replace "thumb" with "sqr" in each url.
+    images_out = MapCompose(
+        lambda x: x.replace("thumb", "sqr")
+    )
+
+    # week output:
+    # 1 take first value.
+    # 2 matching week info in text.
     week_out = Compose(
         TakeFirst(),
         lambda x: re.findall(r"\((.*?)\)", x)[0]
@@ -46,13 +56,23 @@ class KapitalLoader(ProductLoader):
 
 
 class GallianolandorLoader(ProductLoader):
+    # price output:
+    # 1 take first value.
+    # 2 strip text.
     price_out = Compose(
         TakeFirst(),
         lambda x: x.strip(),
     )
+
+    # images output:
+    # 1 remove query in each url.
     images_out = MapCompose(
-        lambda x: x.split('?')[0]  # 去除image_url的query部分
+        lambda x: x.split('?')[0]
     )
+
+    # season output:
+    # 1 take first value.
+    # 2 replace "/" with " ".
     season_out = Compose(
         TakeFirst(),
         lambda x: x.replace('/', '')
