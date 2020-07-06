@@ -28,13 +28,13 @@ def file_path(info, filename=None):
     if week:
         path += week + '/'
     elif category:
-        path += category + '/'
+        path += legal_name(category) + '/'
     if art_no and title:
-        item_folder = art_no + '-' + title
+        item_folder = art_no + '-' + legal_name(title)
     elif art_no and title is None:
         item_folder = art_no
     elif art_no is None and title:
-        item_folder = title
+        item_folder = legal_name(title)
     else:
         raise TypeError("At least one of 'title' and 'art_no' must be provided")
     path += legal_name(item_folder) + '/'
