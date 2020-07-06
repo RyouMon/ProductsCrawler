@@ -8,6 +8,10 @@ class ProductLoader(ItemLoader):
     # 1 take first value.
     default_output_processor = TakeFirst()
 
+    # images output:
+    # 1 original values.
+    images_out = Identity()
+
 
 class SupremeLoader(ProductLoader):
     title_out = Compose(
@@ -31,10 +35,6 @@ class KapitalLoader(ProductLoader):
         TakeFirst(),
         lambda x: x.strip(),
     )
-
-    # images output:
-    # 1 original values.
-    images_out = Identity()
 
     # category output:
     # 1 take first value.
@@ -78,10 +78,6 @@ class NikeLoader(ProductLoader):
 
 
 class BearBrickLoader(ProductLoader):
-    # images output:
-    # 1 original values.
-    images_out = Identity()
-
     # title output:
     # 1 take first value.
     # 2 strip text.
@@ -105,10 +101,6 @@ class UastoreLoader(ProductLoader):
     """
     Item Loader for United Arrows Online Store(store.united-arrows.co.jp).
     """
-    # images output:
-    # 1 original values.
-    images_out = Identity()
-
     # brand output:
     # 1 take first value.
     # 2 titled brand
