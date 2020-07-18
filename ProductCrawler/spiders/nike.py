@@ -48,5 +48,5 @@ class NikeSpider(CrawlSpider):
     @staticmethod
     def parse_title(response):
         h1 = response.xpath(r'//h1[@id="pdp_product_title"]/text()').get()
-        h2 = response.xpath(r'//h2[@class="headline-5-small pb1-sm d-sm-ib css-6yhqc5"]/text()').get()
+        h2 = response.xpath(r'//h2[@data-test="product-sub-title"]/text()').get()
         return h1 + ' ' + h2
