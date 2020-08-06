@@ -18,7 +18,6 @@ class SupremeSpider(CrawlSpider):
         super(SupremeSpider, self).__init__()
         self.start_urls = start_urls
         self.season = re.findall(r'season/(.*?)/', start_urls[-1]).pop()
-        self.rules = ()
         self.parse_item = parse_item
 
     def parse_start_url(self, response):
@@ -57,15 +56,3 @@ class SupremeSpider(CrawlSpider):
                 callback=self.parse_item,
                 cb_kwargs={"spider": self}
             )
-
-    # def parse_item(self, response):
-    #     loader = SupremeLoader(item=ProductItem(), response=response)
-    #     loader.add_value('brand', 'supreme')
-    #     loader.add_xpath('title', '//h1[@class="detail-title"]/text()')
-    #     loader.add_value('item_url', response.url)
-    #     loader.add_xpath('price', '//span[@class="price-label"]/text()')
-    #     loader.add_value('image_base_url', self.image_base_url)
-    #     loader.add_xpath('images', '//div[@class="carousel-inner"]//img/@src')
-    #     loader.add_value('season', self.season)
-    #     loader.add_xpath('week', '//h2[@class="details-release-small"]/span/text()')
-    #     yield loader.load_item()
