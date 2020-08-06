@@ -4,7 +4,8 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-from os import mkdir, makedirs
+import os.path
+from os import makedirs
 from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
@@ -18,14 +19,12 @@ class ProductInfoPipeline(object):
         # 保存路径：
         # images/<brand>/<number>/url.txt
         filepath = file_path(item)
-        filepath = IMAGES_STORE + '/' + filepath
+        filepath = os.path.join(IMAGES_STORE, filepath)
         try:
             makedirs(filepath)
         except OSError:
             pass
-        filename = filepath + '/info.txt'
-        with open(filename, 'w', encoding='utf-8') as f:
-            # f.writelines([k + ': ' + str(v) + '\n' for k, v in item.items()])
+        with open(os.path.join(filepath, 'info.txt'), 'w', encoding='utf-8') as f:
             f.write(str(item.items()))
         return item
 
