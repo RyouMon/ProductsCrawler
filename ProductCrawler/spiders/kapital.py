@@ -8,6 +8,7 @@ class KapitalSpider(GenericSpider):
     name = 'kapital'
     allowed_domains = ['kapital-webshop.jp']
     rules = [
+        # matching each item in item list
         Rule(
             LinkExtractor(
                 allow=r'.*html',
@@ -15,6 +16,7 @@ class KapitalSpider(GenericSpider):
             ),
             callback='parse_item',
         ),
+        # matching other pages
         Rule(
             LinkExtractor(
                 restrict_xpaths='//div[@class="pager"]//a'
