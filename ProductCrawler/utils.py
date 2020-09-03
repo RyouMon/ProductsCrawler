@@ -66,27 +66,20 @@ def gen_name_from_url(url):
     :param url: url without query
     :return: string of filename
 
-    >>> gen_name_from_url('https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/d4452769-d6ac-4121-8f98-96f7cb9e0f68/air-vapormax-2020-fk-%E5%A5%B3%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-bQP642.jpg')
-    'd4452769-d6ac-4121-8f98-96f7cb9e0f68air-vapormax-2020-fk-女子运动鞋-bQP642.jpg'
-
-    >>> gen_name_from_url('https://www.supremecommunity.com/u/season/spring-summer2020/accessories/6123edc7270c4c42956694b16d9fedf3_sqr.jpg')
-    '6123edc7270c4c42956694b16d9fedf3_sqr.jpg'
-
-    >>> gen_name_from_url('https://www.kapital-webshop.jp/client_info/KAPITAL/itemimage/EK966/EK966_O_W.jpg')
-    'EK966_O_W.jpg'
-
-    >>> gen_name_from_url('https://cdn.shopifycdn.net/s/files/1/0099/0494/7263/products/0007_compact.jpg')
-    '0007_compact.jpg'
-
     >>> gen_name_from_url('http://www.bearbrick.com/WI/upimage/0122_200724_pfhmgz_b.png')
     '0122_200724_pfhmgz_b.png'
 
     >>> gen_name_from_url('https://c.imgz.jp/802/53822802/53822802_46_d_500.jpg')
     '53822802_46_d_500.jpg'
+
+    >>> gen_name_from_url('https://c.imgz.jp/802/53822802/53822802_46_d_500.jpg/')
+    '53822802_46_d_500.jpg'
     """
     parts = url.split('/')
     if 'nike' in url:
         filename = unquote(parts[-2] + parts[-1])
+    elif url.endswith('/'):
+        filename = parts[-2]
     else:
         filename = parts[-1]
     return legal_name(filename)
