@@ -1,0 +1,48 @@
+{
+  "items": {
+    "class": "ProductItem",
+    "loader": "KapitalLoader",
+    "attrs": {
+      "brand": {
+        "method": "value",
+        "args": ["kapital"]
+      },
+      "title": {
+        "method": "xpath",
+        "args": ["//h2[@id=\"itemName\"]/text()"]
+      },
+      "art_no": {
+        "method": "xpath",
+        "args": ["//p[@class=\"appeal\"]/text()"]
+      },
+      "item_url": {
+        "method": "eval",
+        "args": ["response.url"]
+      },
+      "images": {
+        "method": "xpath",
+        "args": ["//div[@class=\"thumb_list\"]//img/@src"]
+      },
+      "price": {
+        "method": "",
+        "args": []
+      },
+      "image_base_url": {
+        "method": "value",
+        "args": ["https://www.kapital-webshop.jp/"]
+      },
+      "season": {
+        "method": "",
+        "args": []
+      },
+      "week": {
+        "method": "",
+        "args": []
+      },
+      "category": {
+        "method": "eval",
+        "args": ["response.url"]
+      }
+    }
+  }
+}
