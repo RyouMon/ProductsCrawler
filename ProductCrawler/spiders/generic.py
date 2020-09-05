@@ -41,3 +41,6 @@ class GenericSpider(CrawlSpider):
                 raise ValueError("No such method: {0}".format(value["method"]))
 
         return loader.load_item()
+
+    def parse_start_url(self, response):
+        return self.parse_item(response)
