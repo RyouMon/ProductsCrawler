@@ -14,8 +14,3 @@ class UastoreSpider(GenericSpider):
         # matching other pages
         Rule(LinkExtractor(restrict_xpaths='//div[contains(@id, "pager")]'))
     )
-
-    def parse_start_url(self, response):
-        # if response is a item page, parse it use function parse_item.
-        if "goods" in response.url:
-            return self.parse_item(response)
