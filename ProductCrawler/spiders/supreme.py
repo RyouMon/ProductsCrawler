@@ -1,24 +1,18 @@
 # -*- coding: utf-8 -*-
 import re
 from scrapy import Request
-from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule
-from ProductCrawler.itemloaders import SupremeLoader
-from ProductCrawler.items import ProductItem
-from ProductCrawler.spiders.universal_methods.parse_item import parse_item
+from .generic import GenericSpider
 
 
-class SupremeSpider(CrawlSpider):
+class SupremeSpider(GenericSpider):
     name = 'supreme'
     allowed_domains = ['supremecommunity.com']
     details_base_url = 'https://www.supremecommunity.com/season/itemdetails/'
     image_base_url = 'https://www.supremecommunity.com'
 
-    def __init__(self, start_urls):
-        super(SupremeSpider, self).__init__()
-        self.start_urls = start_urls
-        self.season = re.findall(r'season/(.*?)/', start_urls[-1]).pop()
-        self.parse_item = parse_item
+    def __init__(self, *args, **kwargs):
+        super(SupremeSpider, self).__init__(*args, **kwargs)
+        self.season = re.findall(r'season/(.*?)/', self.start_urls[-1]).pop()
 
     def parse_start_url(self, response):
         """
@@ -54,5 +48,4 @@ class SupremeSpider(CrawlSpider):
             yield Request(
                 url=self.details_base_url+detail_no.get(),
                 callback=self.parse_item,
-                cb_kwargs={"spider": self}
             )

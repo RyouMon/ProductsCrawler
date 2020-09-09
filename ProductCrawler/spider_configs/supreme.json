@@ -40,13 +40,13 @@
       "image_base_url": {
         "method": "eval",
         "args": [
-          "spider.image_base_url"
+          "self.image_base_url"
         ]
       },
       "season": {
         "method": "eval",
         "args": [
-          "spider.season"
+          "self.season"
         ]
       },
       "week": {
