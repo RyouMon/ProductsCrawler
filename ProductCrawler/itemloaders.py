@@ -12,6 +12,10 @@ class ProductLoader(ItemLoader):
     # 1 original values.
     images_out = Identity()
 
+    @classmethod
+    def delete_url_query_arguments(cls, url):
+        return url.rsplit('?', maxsplit=1)[0]
+
 
 class SupremeLoader(ProductLoader):
     # title output:
@@ -67,7 +71,7 @@ class GallianolandorLoader(ProductLoader):
     # images output:
     # 1 remove query in each url.
     images_out = MapCompose(
-        lambda x: x.split('?')[0]
+        ProductLoader.delete_url_query_arguments,
     )
 
     # season output:
