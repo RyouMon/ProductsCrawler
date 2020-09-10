@@ -132,3 +132,19 @@ class UastoreLoader(ProductLoader):
         TakeFirst(),
         lambda x: x.title()
     )
+
+
+class TsLoader(ProductLoader):
+    # price output
+    # 1 take first value.
+    # 2 strip text.
+    price_out = Compose(
+        TakeFirst(),
+        lambda x: x.strip(),
+    )
+
+    # images output
+    # 1 remove query argument in each url.
+    images_out = MapCompose(
+        ProductLoader.delete_url_query_arguments,
+    )
