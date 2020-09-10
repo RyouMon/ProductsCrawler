@@ -1,0 +1,48 @@
+{
+  "items": {
+    "class": "ProductItem",
+    "loader": "TsLoader",
+    "attrs": {
+      "brand": {
+        "method": "value",
+        "args": ["Travis Scott"]
+      },
+      "title": {
+        "method": "xpath",
+        "args": ["//div[@class=\"PI__desc js-add-description\"]/p[1]/text()"]
+      },
+      "art_no": {
+        "method": "xpath",
+        "args": ["//h2[@class=\"PI__title js-product-title\"]/text()"]
+      },
+      "item_url": {
+        "method": "eval",
+        "args": ["response.url"]
+      },
+      "images": {
+        "method": "xpath",
+        "args": ["//div[@class=\"container\"]//img/@src"]
+      },
+      "price": {
+        "method": "xpath",
+        "args": ["//div[@class=\"PI__price\"]/span/text()"]
+      },
+      "image_base_url": {
+        "method": "value",
+        "args": ["https:"]
+      },
+      "season": {
+        "method": "",
+        "args": []
+      },
+      "week": {
+        "method": "",
+        "args": []
+      },
+      "category": {
+        "method": "",
+        "args": []
+      }
+    }
+  }
+}
