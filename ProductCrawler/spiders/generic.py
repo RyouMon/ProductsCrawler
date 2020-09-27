@@ -4,7 +4,7 @@ from ProductCrawler import items, itemloaders
 
 
 class GenericSpider(CrawlSpider):
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(GenericSpider, self).__init__()
         self.start_urls = kwargs.pop('start_urls', None)
         # use spider name get config from package: parse_item_cfg.
