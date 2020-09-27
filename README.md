@@ -44,8 +44,8 @@ ProductCrawler是一个Scrapy项目，目的是帮助我从购物网站收集商
 ## 其他依赖
 
 为了使用正确使用nike爬虫，你还需要：
-+ Chrome浏览器（chrome version 83）
-+ ChromeDriver==83.0.4103.39
++ Chrome浏览器（chrome version 85）
++ ChromeDriver 85.0.4183.87
 
 缺少它们不会影响其他爬虫的使用。
 
