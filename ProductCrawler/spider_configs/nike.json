@@ -1,0 +1,48 @@
+{
+  "items": {
+    "class": "ProductItem",
+    "loader": "NikeLoader",
+    "attrs": {
+      "brand": {
+        "method": "value",
+        "args": ["Nike"]
+      },
+      "title": {
+        "method": "xpath",
+        "args": ["//h1[@id=\"pdp_product_title\"]/text()"]
+      },
+      "art_no": {
+        "method": "xpath",
+        "args": ["//li[@class=\"description-preview__style-color ncss-li\"]/text()"]
+      },
+      "item_url": {
+        "method": "eval",
+        "args": ["response.url"]
+      },
+      "images": {
+        "method": "xpath",
+        "args": ["//div[@id=\"pdp-6-up\"]//img/@src"]
+      },
+      "price": {
+        "method": "xpath",
+        "args": ["//div[@class=\"css-b9fpep\"]/text()"]
+      },
+      "image_base_url": {
+        "method": "",
+        "args": []
+      },
+      "season": {
+        "method": "",
+        "args": []
+      },
+      "week": {
+        "method": "",
+        "args": []
+      },
+      "category": {
+        "method": "xpath",
+        "args": ["//h2[@data-test=\"product-sub-title\"]/text()"]
+      }
+    }
+  }
+}
