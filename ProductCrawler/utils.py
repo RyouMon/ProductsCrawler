@@ -36,7 +36,7 @@ def file_path(info, filename=''):
     elif not art_no and title:
         product = legal_name(title)
     else:
-        raise TypeError("At least one of 'title' and 'art_no' must be provided")
+        raise ValueError("At least one of 'title' and 'art_no' must be provided")
     args = [brand, season, week, category, product, filename]
     return os.path.join(*map(legal_name, args))
 
