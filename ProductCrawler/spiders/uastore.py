@@ -9,8 +9,8 @@ class UastoreSpider(GenericSpider):
     allowed_domains = ['store.united-arrows.co.jp']
 
     rules = (
-        # matching each item in item list
+        # Match each product in product list.
         Rule(LinkExtractor(restrict_xpaths='//div[@id="itemList"]'), callback='scrap', follow=False),
-        # matching other pages
+        # Match other pages.
         Rule(LinkExtractor(restrict_xpaths='//div[contains(@id, "pager")]'))
     )
