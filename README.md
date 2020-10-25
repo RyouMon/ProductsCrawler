@@ -1,8 +1,6 @@
 # ProductCrawler
 ## 介绍
-ProductCrawler是一个Scrapy项目，目的是帮助我从购物网站收集商品信息，它包含一系列爬虫，爬虫均以商品的品牌来命名。
-
-我会根据自己和自己团队的需求逐步完善这个项目，如果这能碰巧帮到你那就再好不过了。
+ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息，它包含一系列爬虫，爬虫均以商品的品牌来命名。
 
 目前支持的品牌或购物网站有：
 + [supreme](https://www.supremecommunity.com/)
@@ -21,17 +19,17 @@ ProductCrawler是一个Scrapy项目，目的是帮助我从购物网站收集商
 
 ## 开始使用
 
-### 安装Python
+### 安装Python环境
 
-我没有将这个项目打包成可执行文件，所以为了使用这个爬虫项目你需要安装Python3。
+为了使用这个项目你需要Python3的解释环境。
 
 ### 获取项目
 
-右上角有个CODE按钮，直接将整个项目以ZIP的形式下载到你的电脑。
+clone 或者下载这个项目。
 
 ### 安装依赖
 
-解压项目，在项目根目录打开CMD窗口，执行命令：
+项目根目录运行命令：
     
     pip install -r requirements.txt
     
@@ -41,7 +39,7 @@ ProductCrawler是一个Scrapy项目，目的是帮助我从购物网站收集商
 
     python crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
 
-## 其他依赖
+### 其他依赖
 
 为了使用正确使用nike爬虫，你还需要：
 + Chrome浏览器（chrome version 85）
@@ -49,16 +47,23 @@ ProductCrawler是一个Scrapy项目，目的是帮助我从购物网站收集商
 
 缺少它们不会影响其他爬虫的使用。
 
+### 配置问题
+
+通过修改`IMAGES_STORE`可以自定义文件的存储位置。
+
+因为项目本身对爬取速度要求不高，
+所以默认的`DOWNLOAD_DELAY`为 0.5 ，
+如果你需要更快的速度，可以降低这个数值，
+为了应对 IP 限制的问题，你可能需要使用代理池。
 
 ## 基本使用
 
-命令行执行命令：
+项目下执行命令：
 
     python crawl.py brand start_url...
     
-把`brand`替换为品牌名，
-把`start_url`替换为要开始爬取的网页，
-你需要在项目目录下执行所有的命令。
++ 把`brand`替换为品牌名。
++ 把`start_url`替换为要开始爬取的网页。
 
 ## 爬虫
 ### Supreme
