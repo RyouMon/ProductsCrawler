@@ -30,7 +30,7 @@ class ProductInfoPipeline(object):
 
 
 class ProductImagesPipeline(ImagesPipeline):
-    def file_path(self, request, response=None, info=None):
+    def file_path(self, request, response=None, info=None, *, item=None):
         image_name = gen_name_from_url(request.url)
         file_name = file_path(request.meta['item'], image_name)
         return file_name
