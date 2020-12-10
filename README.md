@@ -51,10 +51,7 @@ clone 或者下载这个项目。
 
 通过修改`IMAGES_STORE`可以自定义文件的存储位置。
 
-因为项目本身对爬取速度要求不高，
-所以默认的`DOWNLOAD_DELAY`为 0.5 ，
-如果你需要更快的速度，可以降低这个数值，
-为了应对 IP 限制的问题，你可能需要使用代理池。
+默认开启了AUTOTHROTTLE，可以通过设置`AUTOTHROTTLE_ENABLED`为`False`关闭。
 
 ## 基本使用
 
