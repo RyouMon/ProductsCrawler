@@ -2,62 +2,101 @@
   "items": {
     "class": "ProductItem",
     "loader": "SupremeLoader",
+    "item_url_for_test": "https://www.supremecommunity.com/season/itemdetails/5774/",
     "attrs": {
       "brand": {
         "method": "value",
         "args": [
-          "supreme"
+          "Supreme"
+        ],
+        "expects": [
+          {
+            "method": "assertEqual",
+            "kwargs": {"first": "Supreme"}
+          }
         ]
       },
       "title": {
         "method": "xpath",
         "args": [
-          "//h1[@class=\"detail-title\"]/text()"
+          "//div[contains(@class, 'page-title')]/text()"
+        ],
+        "expects": [
+          {
+            "method": "assertIn",
+            "kwargs": {"member": "MCMXCIV Terry S/S Top"}
+          }
         ]
       },
       "art_no": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": []
       },
       "item_url": {
         "method": "eval",
         "args": [
           "response.url"
-        ]
+        ],
+        "expects": []
       },
       "images": {
         "method": "xpath",
         "args": [
-          "//div[@class=\"carousel-inner\"]//img/@src"
+          "//div[@class=\"product-thumb__slider\"]//img/@src"
+        ],
+        "expects": [
+          {
+            "method": "assertIn",
+            "kwargs": {"member": "sqr.jpg"}
+          }
         ]
       },
       "price": {
-        "method": "xpath",
-        "args": [
-          "//span[@class=\"price-label\"]/text()"
-        ]
+        "method": "",
+        "args": [],
+        "expects": []
       },
       "image_base_url": {
-        "method": "eval",
+        "method": "value",
         "args": [
-          "self.image_base_url"
-        ]
+          "https://www.supremecommunity.com/"
+        ],
+        "expects": []
       },
       "season": {
-        "method": "eval",
+        "method": "xpath",
         "args": [
-          "self.season"
+          "//ul[@class='breadcrumbs']/li[2]/a/text()"
+        ],
+        "expects": [
+          {
+            "method": "assertIn",
+            "kwargs": {"member": "spring-summer 2020"}
+          }
         ]
       },
       "week": {
         "method": "xpath",
         "args": [
-          "//h2[@class=\"details-release-small\"]/span/text()"
+          "//div[@class='product-inner__box']/a/text()"
+        ],
+        "expects": [
+          {
+            "method": "assertIn",
+            "kwargs": {"member": "Week 19"}
+          }
         ]
       },
       "category": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       }
     }
   }
