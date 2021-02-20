@@ -22,7 +22,7 @@ class SupremeSpider(GenericSpider):
         """
         # 得到每一周的相对地址
         weeks = response.xpath(
-            r'//div[@class="col-xs-12 col-sm-12 col-md-10 box-list scapp-main-cont"]//a/@href'
+            r'//div[@class="catalog-inner"]//a/@href'
         ).getall()
         # 判断该页面是否应该直接交给parse_week()方法进行解析
         if weeks:
@@ -43,7 +43,7 @@ class SupremeSpider(GenericSpider):
         :param response: parse_start_url()方法中返回的请求对象对应的响应对象。
         :return: 对商品的请求对象，回调方法为parse_item()。
         """
-        details = response.xpath('//div[@class="card-details"]/@data-itemid')
+        details = response.xpath('//div[@class="catalog-item-top"]/@data-itemid')
         for detail_no in details:
             yield Request(
                 url=self.details_base_url+detail_no.get(),
