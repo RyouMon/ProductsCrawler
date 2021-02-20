@@ -24,7 +24,7 @@ class ProductInfoPipeline(object):
             makedirs(filepath)
         except OSError:
             pass
-        with open(os.path.join(filepath, 'info.txt'), 'w', encoding='utf-8') as f:
+        with open(os.path.abspath(os.path.join(filepath, 'info.txt')), 'w', encoding='utf-8') as f:
             f.write(str(item.items()))
         return item
 
