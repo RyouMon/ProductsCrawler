@@ -2,46 +2,107 @@
   "items": {
     "class": "ProductItem",
     "loader": "",
+    "item_url_for_test": "",
     "attrs": {
       "brand": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "title": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "art_no": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "item_url": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "images": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "price": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "image_base_url": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "season": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "week": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       },
       "category": {
         "method": "",
-        "args": []
+        "args": [],
+        "expects": [
+          {
+            "method": "",
+            "kwargs": {}
+          }
+        ]
       }
     }
   }
