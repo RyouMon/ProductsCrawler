@@ -40,6 +40,11 @@ class SupremeLoader(ProductLoader):
         lambda x: re.findall(r"\((.*?)\)", x)[0]
     )
 
+    season_out = Compose(
+        TakeFirst(),
+        lambda x: x.strip(),
+    )
+
 
 class KapitalLoader(ProductLoader):
     # art_no output:
