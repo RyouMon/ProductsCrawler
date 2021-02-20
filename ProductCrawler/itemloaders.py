@@ -1,6 +1,6 @@
 import re
 from scrapy.loader import ItemLoader
-from scrapy.loader.processors import *
+from itemloaders.processors import *
 
 
 class ProductLoader(ItemLoader):
