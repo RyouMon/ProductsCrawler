@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import re
+from datetime import date
 from scrapy import Request
 from .generic import GenericSpider
 
@@ -11,8 +11,16 @@ class SupremeSpider(GenericSpider):
     image_base_url = 'https://www.supremecommunity.com'
 
     def __init__(self, *args, **kwargs):
-        super(SupremeSpider, self).__init__(*args, **kwargs)
-        self.season = re.findall(r'season/(.*?)/', self.start_urls[-1]).pop()
+        super().__init__(*args, **kwargs)
+        if not self.start_urls:
+            today = date.today()
+            year, week, _ = today.isocalendar()
+            month = today.month
+            season = f'spring-summer{year}' if 1 <= month <= 6 else f'fall-winter{year}'
+            for day in range(1, 8):
+                date_ = date.fromisocalendar(year, week, day)
+                url = f'https://www.supremecommunity.com/season/{season}/droplist/{date_.isoformat()}/'
+                self.start_urls.append(url)
 
     def parse_start_url(self, response, **kwargs):
         """
