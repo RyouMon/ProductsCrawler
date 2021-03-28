@@ -8,48 +8,28 @@
         "method": "value",
         "args": [
           "Supreme"
-        ],
-        "expects": [
-          {
-            "method": "assertEqual",
-            "kwargs": {"first": "Supreme"}
-          }
         ]
       },
       "title": {
         "method": "xpath",
         "args": [
           "//div[contains(@class, 'page-title')]/text()"
-        ],
-        "expects": [
-          {
-            "method": "assertIn",
-            "kwargs": {"member": "MCMXCIV Terry S/S Top"}
-          }
         ]
       },
       "art_no": {
         "method": "",
-        "args": [],
-        "expects": []
+        "args": []
       },
       "item_url": {
         "method": "eval",
         "args": [
           "response.url"
-        ],
-        "expects": []
+        ]
       },
       "images": {
         "method": "xpath",
         "args": [
           "//div[@class=\"product-thumb__slider\"]//img/@src"
-        ],
-        "expects": [
-          {
-            "method": "assertIn",
-            "kwargs": {"member": "sqr.jpg"}
-          }
         ]
       },
       "price": {
@@ -68,35 +48,17 @@
         "method": "xpath",
         "args": [
           "//ul[@class='breadcrumbs']/li[2]/a/text()"
-        ],
-        "expects": [
-          {
-            "method": "assertIn",
-            "kwargs": {"member": "spring-summer 2020"}
-          }
         ]
       },
       "week": {
         "method": "xpath",
         "args": [
           "//div[@class='product-inner__box']/a/text()"
-        ],
-        "expects": [
-          {
-            "method": "assertIn",
-            "kwargs": {"member": "Week 19"}
-          }
         ]
       },
       "category": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       }
     }
   }

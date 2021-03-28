@@ -6,103 +6,43 @@
     "attrs": {
       "brand": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "title": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "art_no": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "item_url": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "images": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "price": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "image_base_url": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "season": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "week": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       },
       "category": {
         "method": "",
-        "args": [],
-        "expects": [
-          {
-            "method": "",
-            "kwargs": {}
-          }
-        ]
+        "args": []
       }
     }
   }
