@@ -17,13 +17,12 @@ class NikeSpider(GenericSpider):
         # Match each product in product list.
         Rule(
             LinkExtractor(restrict_xpaths=r'//div[contains(@class, "product-grid__items")]', deny=r'.+jpg'),
-            callback='parse_item',
+            callback='parse',
             follow=True
         ),
         # Match products of other color in product detail.
         Rule(
             LinkExtractor(restrict_xpaths=r'//div[@class="colorway-images-wrapper"]', deny=r'.+jpg'),
-            callback='parse_item',
-            follow=False
+            callback='parse',
         )
     )

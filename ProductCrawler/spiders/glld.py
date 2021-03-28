@@ -14,7 +14,7 @@ class GlldSpider(GenericSpider):
                 allow=r'.*?products.*?',
                 restrict_xpaths=r'//div[@data-section-id="collection-template"]'
             ),
-            callback='parse_item',
+            callback='parse',
         ),
         # Match other pages.
         Rule(

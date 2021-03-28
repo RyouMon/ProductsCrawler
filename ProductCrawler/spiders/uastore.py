@@ -10,7 +10,7 @@ class UastoreSpider(GenericSpider):
 
     rules = (
         # Match each product in product list.
-        Rule(LinkExtractor(restrict_xpaths='//div[@id="itemList"]'), callback='scrap', follow=False),
+        Rule(LinkExtractor(restrict_xpaths='//div[@id="itemList"]'), callback='parse'),
         # Match other pages.
         Rule(LinkExtractor(restrict_xpaths='//div[contains(@id, "pager")]'))
     )

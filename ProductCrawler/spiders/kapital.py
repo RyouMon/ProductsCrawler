@@ -14,14 +14,12 @@ class KapitalSpider(GenericSpider):
                 allow=r'.*html',
                 restrict_xpaths='//ul[@class="item_list clearfix"]/li//div[@class="img_inner"]/a'
             ),
-            callback='parse_item',
+            callback='parse',
         ),
         # Match other pages.
         Rule(
             LinkExtractor(
                 restrict_xpaths='//div[@class="pager"]//a'
             ),
-            callback='parse',
-            follow=True
         )
     ]

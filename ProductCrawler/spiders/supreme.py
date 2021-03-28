@@ -14,7 +14,7 @@ class SupremeSpider(GenericSpider):
         super(SupremeSpider, self).__init__(*args, **kwargs)
         self.season = re.findall(r'season/(.*?)/', self.start_urls[-1]).pop()
 
-    def parse_start_url(self, response):
+    def parse_start_url(self, response, **kwargs):
         """
         分析当季的页面，生成每一周的请求对象。
         :param response: 由属性start_urls中url生成的响应对象。
@@ -47,5 +47,5 @@ class SupremeSpider(GenericSpider):
         for detail_no in details:
             yield Request(
                 url=self.details_base_url+detail_no.get(),
-                callback=self.parse_item,
+                callback=self.parse,
             )

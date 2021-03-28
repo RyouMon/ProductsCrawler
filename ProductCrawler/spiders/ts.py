@@ -9,5 +9,5 @@ class TsSpider(GenericSpider):
     allowed_domains = ['travisscott.com']
     rules = (
         # Match each product in product list.
-        Rule(LinkExtractor(allow=r'.*products.*'), callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=r'.*products.*'), callback='parse', follow=True),
     )

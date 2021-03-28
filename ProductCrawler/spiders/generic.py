@@ -21,7 +21,7 @@ class GenericSpider(CrawlSpider):
         with open('ProductCrawler/spider_configs/{0}.json'.format(self.name), encoding='utf-8') as f:
             return json.load(f)
 
-    def parse_item(self, response):
+    def parse(self, response, **kwargs):
         item = self.item_class()
         loader = self.loader_class(item=item, response=response)
 
@@ -42,5 +42,5 @@ class GenericSpider(CrawlSpider):
 
         return loader.load_item()
 
-    def parse_start_url(self, response):
-        return self.parse_item(response)
+    def parse_start_url(self, response, **kwargs):
+        return self.parse(response)

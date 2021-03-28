@@ -13,13 +13,12 @@ class BearbrickSpider(GenericSpider):
             LinkExtractor(
                 allow=r'.*html',
                 restrict_xpaths='//section[@id="itemList"]'
-            ), callback='parse_item', follow=False
+            ), callback='parse'
         ),
         # Match other pages.
         Rule(
             LinkExtractor(
                 restrict_xpaths='//div[@id="pager"]',
             ),
-            follow=True
         )
     )
