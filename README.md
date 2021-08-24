@@ -4,8 +4,10 @@ ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息
 
 该项目的创建是兴趣使然，目的是学习`Scarpy`框架，可能存在大量Bug和莫名奇妙的代码...
 
-目前支持的品牌或购物网站有：
+正在生产环境中使用的爬虫有:
 + [supreme](https://www.supremecommunity.com/)
+
+停止维护且不知道能否正常运行的爬虫有:
 + [kapital](https://www.kapital-webshop.jp/)
 + [gallianolandor](https://gallianolandor.com/)
 + [nike](https://www.nike.com/cn/)
