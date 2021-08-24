@@ -2,7 +2,7 @@
 ## 介绍
 ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息，它包含一系列爬虫，爬虫均以商品的品牌来命名。
 
-该项目的创建是兴趣使然，目的是学习`Scarpy`框架，可能存在大量Bug和莫名奇妙的代码...
+该项目的创建是兴趣使然，目的是学习`Scarpy`框架，可能存在一些Bug和莫名奇妙的代码...
 
 正在生产环境中使用的爬虫有:
 + [supreme](https://www.supremecommunity.com/)
