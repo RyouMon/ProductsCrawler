@@ -34,15 +34,13 @@
       },
       "price": {
         "method": "",
-        "args": [],
-        "expects": []
+        "args": []
       },
       "image_base_url": {
         "method": "value",
         "args": [
           "https://www.supremecommunity.com/"
-        ],
-        "expects": []
+        ]
       },
       "season": {
         "method": "xpath",
