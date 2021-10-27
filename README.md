@@ -23,19 +23,20 @@ ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息
 
 ## 开始使用
 
-### 安装Python环境
-
-为了使用这个项目你需要Python3的解释环境。
-
-### 获取项目
+### 获取源码
 
 clone 或者下载这个项目。
 
-### 安装依赖
+### 依赖
 
-项目根目录运行命令：
-    
+- 为了使用这个项目你需要 Python3.6+ 的解释环境。
+
+- 准备好 Python 后，在项目根目录运行命令：
+    ```
     pip install -r requirements.txt
+    ```
+
+- 为了使用 nike 爬虫，你还需要：Chrome 浏览器和相应版本的 ChromeDriver。缺少它们不会影响其他爬虫的使用。
 
 ### 用法
 ```
@@ -63,14 +64,6 @@ python crawl.py supreme https://www.supremecommunity.com/season/spring-summer202
 ```
 scrapy crawl supreme -a start_urls=https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
 ```
-
-### 其他依赖
-
-为了使用正确使用nike爬虫，你还需要：
-+ Chrome浏览器（chrome version 85）
-+ ChromeDriver 85.0.4183.87
-
-缺少它们不会影响其他爬虫的使用。
 
 ### 配置问题
 
