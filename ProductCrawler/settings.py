@@ -93,3 +93,24 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 3.0
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# MAIL_FROM = 'example@host'
+
+# MAIL_HOST = 'smtp.host'
+
+MAIL_PORT = 465
+
+# MAIL_USER = 'example@host
+
+# MAIL_PASS = ''
+
+MAIL_TLS = True
+
+MAIL_SSL = True
+
+# STATSMAILER_RCPTS = []
+
+
+EXTENSIONS = {
+    'scrapy.extensions.statsmailer.StatsMailer': 500,
+}
