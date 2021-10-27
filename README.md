@@ -36,12 +36,29 @@ clone 或者下载这个项目。
 项目根目录运行命令：
     
     pip install -r requirements.txt
+
+### 用法
+```
+python crawl.py -h                                                                                                  
+usage: crawl.py [-h] brand start_urls [start_urls ...]
+
+positional arguments:
+  brand       指定你要收集的品牌
+  start_urls  指定你要收集商品的所在网址。
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+或
+```
+scrapy crawl brand -a start_urls=url
+scrapy crawl brand -a start_urls=[\"url1\",\"url2\"...]
+```
     
-### 爬取
-
 试着执行下面这条命令，项目目录下会创建product目录，所有爬取到的商品图片和信息都会出现在里面。
-
-    python crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
+```
+python crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
+```
 
 ### 其他依赖
 
@@ -57,15 +74,6 @@ clone 或者下载这个项目。
 
 默认开启了AUTOTHROTTLE，可以通过设置`AUTOTHROTTLE_ENABLED`为`False`关闭。
 
-## 基本使用
-
-项目下执行命令：
-
-    python crawl.py brand start_url...
-    
-+ 把`brand`替换为品牌名。
-+ 把`start_url`替换为要开始爬取的网页。
-
 ## 爬虫
 ### Supreme
 爬取某一季所有周的商品  
@@ -75,10 +83,6 @@ clone 或者下载这个项目。
 爬取某一周所有的商品  
 
     python crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
-
-一次性爬取多个周的商品
-
-    python crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/ https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-05-21/
 
 ### Kapital
 爬取某一分类下的所有商品
