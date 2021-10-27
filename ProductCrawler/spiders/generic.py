@@ -6,11 +6,20 @@ from ProductCrawler import items, itemloaders
 class GenericSpider(CrawlSpider):
     def __init__(self, *args, **kwargs):
         super(GenericSpider, self).__init__()
+
+        # set start_urls
         self.start_urls = kwargs.pop('start_urls', list())
+        self.logger.debug('original start_urls is %r' % self.start_urls)
         if isinstance(self.start_urls, str):
-            self.start_urls = [self.start_urls]
+            try:
+                self.start_urls = json.loads(self.start_urls)
+            except json.JSONDecodeError:
+                self.start_urls = [self.start_urls]
+        self.logger.debug('cleaned start_urls is %r' % self.start_urls)
+
         # use spider name get config from package: parse_item_cfg.
         self.cfg = self._get_spider_cfg()['items']
+
         # get Item and ItemLoader class.
         self.item_class = eval('items.' + self.cfg['class'])
         self.loader_class = eval('itemloaders.' + self.cfg['loader'])
