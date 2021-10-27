@@ -59,6 +59,10 @@ scrapy crawl brand -a start_urls=[\"url1\",\"url2\"...]
 ```
 python crawl.py supreme https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
 ```
+这条命令是和上面等价的
+```
+scrapy crawl supreme -a start_urls=https://www.supremecommunity.com/season/spring-summer2020/droplist/2020-02-27/
+```
 
 ### 其他依赖
 
