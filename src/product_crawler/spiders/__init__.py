@@ -20,9 +20,10 @@ class GenericSpider(CrawlSpider):
                 self.start_urls = [self.start_urls]
         self.logger.debug('cleaned start_urls is %r' % self.start_urls)
 
-        self.cfg = self._get_spider_cfg()['items']
-        self.item_class = eval('items.' + self.cfg['class'])
-        self.loader_class = eval('itemloaders.' + self.cfg['loader'])
+        config = self._get_spider_cfg()
+        self.item_class = getattr(items, config['item_class'])
+        self.loader_class = getattr(itemloaders, config['loader_class'])
+        self.load_rules = config.get('load_rules', {})
 
     def _get_spider_cfg(self):
         content = read_text(spider_configs, f'{self.name}.json')
@@ -32,20 +33,19 @@ class GenericSpider(CrawlSpider):
         item = self.item_class()
         loader = self.loader_class(item=item, response=response)
 
-        # parse response
-        for key, value in self.cfg['attrs'].items():
-            if value["method"] == "":
+        for field, rule in self.load_rules.items():
+            if rule["method"] == "":
                 continue
-            if value["method"] == "value":
-                loader.add_value(key, *value["args"])
-            elif value["method"] == "xpath":
-                loader.add_xpath(key, *value["args"])
-            elif value["method"] == "css":
-                loader.add_css(key, *value["args"])
-            elif value["method"] == "eval":
-                loader.add_value(key, *map(eval, value["args"]))
+            if rule["method"] == "value":
+                loader.add_value(field, *rule["args"])
+            elif rule["method"] == "xpath":
+                loader.add_xpath(field, *rule["args"])
+            elif rule["method"] == "css":
+                loader.add_css(field, *rule["args"])
+            elif rule["method"] == "eval":
+                loader.add_value(field, *map(eval, rule["args"]))
             else:
-                raise ValueError("No such method: {0}".format(value["method"]))
+                raise ValueError("No such method: {0}".format(rule["method"]))
 
         return loader.load_item()
 
