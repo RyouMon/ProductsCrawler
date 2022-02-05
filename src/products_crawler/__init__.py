@@ -1,3 +1,4 @@
+import os
 from argparse import ArgumentParser
 
 from scrapy.crawler import CrawlerProcess
@@ -6,6 +7,7 @@ from scrapy.spiderloader import SpiderLoader
 
 
 def main():
+    os.environ.setdefault('SCRAPY_SETTINGS_MODULE', 'products_crawler.settings')
     scrapy_settings = get_project_settings()
     spider_loader = SpiderLoader(scrapy_settings)
 
