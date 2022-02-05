@@ -1,48 +1,46 @@
 {
-  "items": {
-    "class": "ProductItem",
-    "loader": "BearBrickLoader",
-    "attrs": {
-      "brand": {
-        "method": "value",
-        "args": ["BearBrick"]
-      },
-      "title": {
-        "method": "xpath",
-        "args": ["//h3[@class='itemName']/text()"]
-      },
-      "art_no": {
-        "method": "",
-        "args": []
-      },
-      "item_url": {
-        "method": "eval",
-        "args": ["response.url"]
-      },
-      "images": {
-        "method": "xpath",
-        "args": ["//ul[@id='slideMain']//img/@src"]
-      },
-      "price": {
-        "method": "",
-        "args": [""]
-      },
-      "image_base_url": {
-        "method": "value",
-        "args": ["http://www.bearbrick.com"]
-      },
-      "season": {
-        "method": "xpath",
-        "args": ["//div[@class='txtBox']/p/text()"]
-      },
-      "week": {
-        "method": "",
-        "args": []
-      },
-      "category": {
-        "method": "xpath",
-        "args": ["//h3[@class='itemName']/text()"]
-      }
+  "item_class": "ProductItem",
+  "loader_class": "BearBrickLoader",
+  "load_rules": {
+    "brand": {
+      "method": "value",
+      "args": ["BearBrick"]
+    },
+    "title": {
+      "method": "xpath",
+      "args": ["//h3[@class='itemName']/text()"]
+    },
+    "art_no": {
+      "method": "",
+      "args": []
+    },
+    "item_url": {
+      "method": "eval",
+      "args": ["response.url"]
+    },
+    "images": {
+      "method": "xpath",
+      "args": ["//ul[@id='slideMain']//img/@src"]
+    },
+    "price": {
+      "method": "",
+      "args": [""]
+    },
+    "image_base_url": {
+      "method": "value",
+      "args": ["http://www.bearbrick.com"]
+    },
+    "season": {
+      "method": "xpath",
+      "args": ["//div[@class='txtBox']/p/text()"]
+    },
+    "week": {
+      "method": "",
+      "args": []
+    },
+    "category": {
+      "method": "xpath",
+      "args": ["//h3[@class='itemName']/text()"]
     }
   }
 }

@@ -1,48 +1,46 @@
 {
-  "items": {
-    "class": "ProductItem",
-    "loader": "GallianolandorLoader",
-    "attrs": {
-      "brand": {
-        "method": "value",
-        "args": ["GallianoLandor"]
-      },
-      "title": {
-        "method": "xpath",
-        "args": ["//h1[@class=\"product-single__title wvendor\"]/text()"]
-      },
-      "art_no": {
-        "method": "",
-        "args": []
-      },
-      "item_url": {
-        "method": "eval",
-        "args": ["response.url"]
-      },
-      "images": {
-        "method": "xpath",
-        "args": ["//ul[@class=\"product-single__thumbs grid-uniform\"]//a/@href"]
-      },
-      "price": {
-        "method": "xpath",
-        "args": ["//span[@class=\"product-price\"]/text()"]
-      },
-      "image_base_url": {
-        "method": "value",
-        "args": ["https:"]
-      },
-      "season": {
-        "method": "xpath",
-        "args": ["//a[@class=\"collection-title text-center\"]/text()"]
-      },
-      "week": {
-        "method": "",
-        "args": []
-      },
-      "category": {
-        "method": "",
-        "args": []
-      }
+  "item_class": "ProductItem",
+  "loader_class": "GallianolandorLoader",
+  "load_rules": {
+    "brand": {
+      "method": "value",
+      "args": ["GallianoLandor"]
+    },
+    "title": {
+      "method": "xpath",
+      "args": ["//h1[@class=\"product-single__title wvendor\"]/text()"]
+    },
+    "art_no": {
+      "method": "",
+      "args": []
+    },
+    "item_url": {
+      "method": "eval",
+      "args": ["response.url"]
+    },
+    "images": {
+      "method": "xpath",
+      "args": ["//ul[@class=\"product-single__thumbs grid-uniform\"]//a/@href"]
+    },
+    "price": {
+      "method": "xpath",
+      "args": ["//span[@class=\"product-price\"]/text()"]
+    },
+    "image_base_url": {
+      "method": "value",
+      "args": ["https:"]
+    },
+    "season": {
+      "method": "xpath",
+      "args": ["//a[@class=\"collection-title text-center\"]/text()"]
+    },
+    "week": {
+      "method": "",
+      "args": []
+    },
+    "category": {
+      "method": "",
+      "args": []
     }
   }
 }

@@ -1,63 +1,60 @@
 {
-  "items": {
-    "class": "ProductItem",
-    "loader": "SupremeLoader",
-    "item_url_for_test": "https://www.supremecommunity.com/season/itemdetails/5774/",
-    "attrs": {
-      "brand": {
-        "method": "value",
-        "args": [
-          "Supreme"
-        ]
-      },
-      "title": {
-        "method": "xpath",
-        "args": [
-          "//div[contains(@class, 'page-title')]/text()"
-        ]
-      },
-      "art_no": {
-        "method": "",
-        "args": []
-      },
-      "item_url": {
-        "method": "eval",
-        "args": [
-          "response.url"
-        ]
-      },
-      "images": {
-        "method": "xpath",
-        "args": [
-          "//div[@class=\"product-thumb__slider\"]//img/@src"
-        ]
-      },
-      "price": {
-        "method": "",
-        "args": []
-      },
-      "image_base_url": {
-        "method": "value",
-        "args": [
-          "https://www.supremecommunity.com/"
-        ]
-      },
-      "season": {
-        "method": "xpath",
-        "args": [
-          "//ul[@class='breadcrumbs']/li[2]/a/text()"
-        ]
-      },
-      "week": {
-        "method": "xpath",
-        "args": [
-          "//div[@class='product-inner__box']/a/text()"
-        ]
-      },
-      "category": {
-        "method": "",
-        "args": []
-      }
+  "item_class": "ProductItem",
+  "loader_class": "SupremeLoader",
+  "load_rules": {
+    "brand": {
+      "method": "value",
+      "args": [
+        "Supreme"
+      ]
+    },
+    "title": {
+      "method": "xpath",
+      "args": [
+        "//div[contains(@class, 'page-title')]/text()"
+      ]
+    },
+    "art_no": {
+      "method": "",
+      "args": []
+    },
+    "item_url": {
+      "method": "eval",
+      "args": [
+        "response.url"
+      ]
+    },
+    "images": {
+      "method": "xpath",
+      "args": [
+        "//div[@class=\"product-thumb__slider\"]//img/@src"
+      ]
+    },
+    "price": {
+      "method": "",
+      "args": []
+    },
+    "image_base_url": {
+      "method": "value",
+      "args": [
+        "https://www.supremecommunity.com/"
+      ]
+    },
+    "season": {
+      "method": "xpath",
+      "args": [
+        "//ul[@class='breadcrumbs']/li[2]/a/text()"
+      ]
+    },
+    "week": {
+      "method": "xpath",
+      "args": [
+        "//div[@class='product-inner__box']/a/text()"
+      ]
+    },
+    "category": {
+      "method": "",
+      "args": []
     }
-  }
+}
 }

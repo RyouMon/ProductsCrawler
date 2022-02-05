@@ -1,49 +1,46 @@
 {
-  "items": {
-    "class": "ProductItem",
-    "loader": "",
-    "item_url_for_test": "",
-    "attrs": {
-      "brand": {
-        "method": "",
-        "args": []
-      },
-      "title": {
-        "method": "",
-        "args": []
-      },
-      "art_no": {
-        "method": "",
-        "args": []
-      },
-      "item_url": {
-        "method": "",
-        "args": []
-      },
-      "images": {
-        "method": "",
-        "args": []
-      },
-      "price": {
-        "method": "",
-        "args": []
-      },
-      "image_base_url": {
-        "method": "",
-        "args": []
-      },
-      "season": {
-        "method": "",
-        "args": []
-      },
-      "week": {
-        "method": "",
-        "args": []
-      },
-      "category": {
-        "method": "",
-        "args": []
-      }
+  "item_class": "ProductItem",
+  "loader_class": "",
+  "load_rules": {
+    "brand": {
+      "method": "",
+      "args": []
+    },
+    "title": {
+      "method": "",
+      "args": []
+    },
+    "art_no": {
+      "method": "",
+      "args": []
+    },
+    "item_url": {
+      "method": "",
+      "args": []
+    },
+    "images": {
+      "method": "",
+      "args": []
+    },
+    "price": {
+      "method": "",
+      "args": []
+    },
+    "image_base_url": {
+      "method": "",
+      "args": []
+    },
+    "season": {
+      "method": "",
+      "args": []
+    },
+    "week": {
+      "method": "",
+      "args": []
+    },
+    "category": {
+      "method": "",
+      "args": []
     }
   }
 }

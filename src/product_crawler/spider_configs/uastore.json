@@ -1,48 +1,46 @@
 {
-  "items": {
-    "class": "ProductItem",
-    "loader": "UastoreLoader",
-    "attrs": {
-      "brand": {
-        "method": "xpath",
-        "args": ["//p[@class=\"brandName\"]/a/text()"]
-      },
-      "title": {
-        "method": "xpath",
-        "args": ["//p[@class=\"itemName\"]/text()"]
-      },
-      "art_no": {
-        "method": "",
-        "args": []
-      },
-      "item_url": {
-        "method": "eval",
-        "args": ["response.url"]
-      },
-      "images": {
-        "method": "xpath",
-        "args": ["//ul[@class=\"mainimage_gallery\"]//a/@data-zoom-image"]
-      },
-      "price": {
-        "method": "xpath",
-        "args": ["//p[@class=\"price\"]/text()"]
-      },
-      "image_base_url": {
-        "method": "",
-        "args": []
-      },
-      "season": {
-        "method": "",
-        "args": []
-      },
-      "week": {
-        "method": "",
-        "args": []
-      },
-      "category": {
-        "method": "",
-        "args": []
-      }
+  "item_class": "ProductItem",
+  "loader_class": "UastoreLoader",
+  "load_rules": {
+    "brand": {
+      "method": "xpath",
+      "args": ["//p[@class=\"brandName\"]/a/text()"]
+    },
+    "title": {
+      "method": "xpath",
+      "args": ["//p[@class=\"itemName\"]/text()"]
+    },
+    "art_no": {
+      "method": "",
+      "args": []
+    },
+    "item_url": {
+      "method": "eval",
+      "args": ["response.url"]
+    },
+    "images": {
+      "method": "xpath",
+      "args": ["//ul[@class=\"mainimage_gallery\"]//a/@data-zoom-image"]
+    },
+    "price": {
+      "method": "xpath",
+      "args": ["//p[@class=\"price\"]/text()"]
+    },
+    "image_base_url": {
+      "method": "",
+      "args": []
+    },
+    "season": {
+      "method": "",
+      "args": []
+    },
+    "week": {
+      "method": "",
+      "args": []
+    },
+    "category": {
+      "method": "",
+      "args": []
     }
   }
 }
