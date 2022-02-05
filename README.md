@@ -1,4 +1,6 @@
 # ProductCrawler
+[![Version](https://img.shields.io/pypi/v/products_crawler)](https://pypi.org/project/products_crawler/)
+
 ## 介绍
 ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息，它包含一系列爬虫，爬虫均以商品的品牌来命名。
 
