@@ -9,7 +9,7 @@ class NikeSpider(GenericSpider):
     allowed_domains = ['nike.com']
     custom_settings = dict(
             DOWNLOADER_MIDDLEWARES={
-                'product_crawler.middlewares.SeleniumDownloaderMiddleware': 543,
+                'products_crawler.middlewares.SeleniumDownloaderMiddleware': 543,
             }
     )
 

@@ -3,8 +3,8 @@ from importlib.resources import read_text
 
 from scrapy.spiders import CrawlSpider
 
-from product_crawler import spider_configs
-from product_crawler import items, itemloaders
+from products_crawler import spider_configs
+from products_crawler import items, itemloaders
 
 
 class GenericSpider(CrawlSpider):

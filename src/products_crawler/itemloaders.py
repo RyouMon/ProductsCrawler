@@ -1,7 +1,7 @@
 from scrapy.loader import ItemLoader
 from itemloaders.processors import MapCompose, Compose
 
-from product_crawler.processors import take_first, take_first_and_strip, identity, \
+from products_crawler.processors import take_first, take_first_and_strip, identity, \
                                        match_supreme_week, match_kapital_category, \
                                        match_nike_art_no, match_bearbrick_category
 

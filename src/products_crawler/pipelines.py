@@ -9,8 +9,8 @@ from os import makedirs
 from scrapy import Request
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
-from product_crawler.settings import IMAGES_STORE
-from product_crawler.utils import file_path, gen_name_from_url
+from products_crawler.settings import IMAGES_STORE
+from products_crawler.utils import file_path, gen_name_from_url
 
 
 class ProductInfoPipeline(object):
