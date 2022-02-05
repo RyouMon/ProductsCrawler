@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from scrapy.spiders import Rule
 from scrapy.linkextractors import LinkExtractor
-from .generic import GenericSpider
+from . import GenericSpider
 
 
 class KapitalSpider(GenericSpider):

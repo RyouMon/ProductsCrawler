@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from scrapy import Request
-from .generic import GenericSpider
+from . import GenericSpider
 
 
 class SupremeSpider(GenericSpider):

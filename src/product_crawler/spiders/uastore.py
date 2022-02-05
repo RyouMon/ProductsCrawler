@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
-from .generic import GenericSpider
+from . import GenericSpider
 
 
 class UastoreSpider(GenericSpider):
