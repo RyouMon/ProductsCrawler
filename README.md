@@ -28,7 +28,7 @@ ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息
 
 # 安装
 ```
-pip install product_crawler
+pip install products_crawler
 ```
 
 # 用法
