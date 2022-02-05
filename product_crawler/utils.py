@@ -91,5 +91,5 @@ def get_spider_cfg(name):
     :param name: name of spider
     :return: dictionary of configuration
     """
-    with open('ProductCrawler/spider_configs/{0}.json'.format(name), encoding='utf-8') as f:
+    with open('product_crawler/spider_configs/{0}.json'.format(name), encoding='utf-8') as f:
         return json.load(f)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for ProductCrawler project
+# Scrapy settings for product_crawler project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,10 +9,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'ProductCrawler'
+BOT_NAME = 'product_crawler'
 
-SPIDER_MODULES = ['ProductCrawler.spiders']
-NEWSPIDER_MODULE = 'ProductCrawler.spiders'
+SPIDER_MODULES = ['product_crawler.spiders']
+NEWSPIDER_MODULE = 'product_crawler.spiders'
 
 IMAGES_STORE = r'products'
 
@@ -20,7 +20,7 @@ SELENIUM_TIMEOUT = 20
 CHROME_OPTIONS = ['--headless']
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'ProductCrawler (+http://www.yourdomain.com)'
+# USER_AGENT = 'product_crawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -51,13 +51,13 @@ DOWNLOAD_DELAY = 0.1
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'ProductCrawler.middlewares.ProductCrawlerSpiderMiddleware': 543,
+#    'product_crawler.middlewares.ProductCrawlerSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'ProductCrawler.middlewares.ProductCrawlerDownloaderMiddleware': 543,
+#    'product_crawler.middlewares.ProductCrawlerDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -69,8 +69,8 @@ DOWNLOAD_DELAY = 0.1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'ProductCrawler.pipelines.ProductInfoPipeline': 300,
-    'ProductCrawler.pipelines.ProductImagesPipeline': 301,
+    'product_crawler.pipelines.ProductInfoPipeline': 300,
+    'product_crawler.pipelines.ProductImagesPipeline': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

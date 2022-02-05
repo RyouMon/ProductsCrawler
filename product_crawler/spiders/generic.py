@@ -1,6 +1,6 @@
 import json
 from scrapy.spiders import CrawlSpider
-from ProductCrawler import items, itemloaders
+from product_crawler import items, itemloaders
 
 
 class GenericSpider(CrawlSpider):
@@ -29,7 +29,7 @@ class GenericSpider(CrawlSpider):
         get configuration.
         :return: dictionary of configuration
         """
-        with open('ProductCrawler/spider_configs/{0}.json'.format(self.name), encoding='utf-8') as f:
+        with open('product_crawler/spider_configs/{0}.json'.format(self.name), encoding='utf-8') as f:
             return json.load(f)
 
     def parse(self, response, **kwargs):
