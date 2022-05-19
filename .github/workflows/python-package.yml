@@ -39,7 +39,7 @@ jobs:
     - name: Run Test
       run: |
         cd src
-        python -m unittest ../tests
+        python -m unittest discover ../tests
     - name: Check spiders contacts
       run: |
         cd src
