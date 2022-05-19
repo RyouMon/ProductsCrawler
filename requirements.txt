@@ -1,5 +1,5 @@
 fake-useragent==0.1.11
-Pillow==9.0.0
+Pillow==9.0.1
 Scrapy==2.5.1
 selenium==3.141.0
 
