@@ -7,7 +7,7 @@
 import os.path
 from os import makedirs
 from scrapy import Request
-from scrapy.pipelines.images import ImagesPipeline
+from scrapy.pipelines.files import FilesPipeline
 from scrapy.exceptions import DropItem
 from products_crawler.settings import IMAGES_STORE
 from products_crawler.utils import file_path, gen_name_from_url
@@ -29,7 +29,7 @@ class ProductInfoPipeline(object):
         return item
 
 
-class ProductImagesPipeline(ImagesPipeline):
+class ProductImagesPipeline(FilesPipeline):
     def file_path(self, request, response=None, info=None, *, item=None):
         image_name = gen_name_from_url(request.url)
         file_name = file_path(request.meta['item'], image_name)
