@@ -16,7 +16,7 @@ class SupremeSpider(GenericSpider):
             today = date.today()
             year, week, _ = today.isocalendar()
             month = today.month
-            season = f'spring-summer{year}' if 1 <= month <= 6 else f'fall-winter{year}'
+            season = self.get_season(year, month)
             for day in range(1, 8):
                 date_ = date.fromisocalendar(year, week, day)
                 url = f'https://www.supremecommunity.com/season/{season}/droplist/{date_.isoformat()}/'
@@ -43,3 +43,7 @@ class SupremeSpider(GenericSpider):
                 url=self.details_base_url+detail_no.get(),
                 callback=self.parse,
             )
+
+    @staticmethod
+    def get_season(year, month):
+        return f'spring-summer{year}' if 1 <= month <= 6 else f'fall-winter{year}'
