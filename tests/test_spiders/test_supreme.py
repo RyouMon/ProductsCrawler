@@ -22,3 +22,7 @@ class SupremeTest(TestCase):
         today = date(2022, 5, 21)
         expects = [f'2022-5-{n}' for n in range(16, 23)]
         self.assertListEqual(SupremeSpider.get_date_formats(today), expects)
+
+    def test_init_not_given_start_url_should_generate_7_urls(self):
+        spider = SupremeSpider()
+        self.assertEqual(len(spider.start_urls), 7)

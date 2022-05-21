@@ -13,12 +13,12 @@ class SupremeSpider(GenericSpider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not self.start_urls:
-            year, week, month = self.get_today_info(date.today())
-            season = self.get_season(year, month)
-            for day in range(1, 8):
-                date_ = date.fromisocalendar(year, week, day)
-                url = f'https://www.supremecommunity.com/season/{season}/droplist/{date_.isoformat()}/'
-                self.start_urls.append(url)
+            today = date.today()
+            season = self.get_season(today.year, today.month)
+            self.start_urls = [
+                f'https://www.supremecommunity.com/season/{season}/droplist/{d}/'
+                for d in self.get_date_formats(today)
+            ]
 
     def parse_start_url(self, response, **kwargs):
         """分析当季的页面，生成每一周的请求对象。"""
@@ -45,12 +45,6 @@ class SupremeSpider(GenericSpider):
     @staticmethod
     def get_season(year, month):
         return f'spring-summer{year}' if 1 <= month <= 6 else f'fall-winter{year}'
-
-    @staticmethod
-    def get_today_info(today):
-        year, week, _ = today.isocalendar()
-        month = today.month
-        return year, month, week
 
     @staticmethod
     def get_date_formats(today):
