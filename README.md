@@ -24,7 +24,7 @@ ProductCrawler是一个Scrapy项目，目的是从购物网站收集商品信息
 + wtaps
 
 # 依赖
-- Python3.6+
+- Python3.7+
 
 - 为了使用 nike 爬虫，你还需要：Chrome 浏览器和相应版本的 ChromeDriver。缺少它们不会影响其他爬虫的使用。
 
