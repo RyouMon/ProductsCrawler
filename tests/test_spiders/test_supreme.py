@@ -4,7 +4,7 @@ from datetime import date
 from products_crawler.spiders.supreme import SupremeSpider
 
 
-class SupremeTest(TestCase):
+class SupremeSpiderTest(TestCase):
 
     def test_get_season_given_jan_should_return_summer(self):
         self.assertEqual(SupremeSpider.get_season(2022, 1), 'spring-summer2022')
