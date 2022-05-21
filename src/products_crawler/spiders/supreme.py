@@ -13,9 +13,7 @@ class SupremeSpider(GenericSpider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not self.start_urls:
-            today = date.today()
-            year, week, _ = today.isocalendar()
-            month = today.month
+            year, week, month = self.get_today_info(date.today())
             season = self.get_season(year, month)
             for day in range(1, 8):
                 date_ = date.fromisocalendar(year, week, day)
@@ -47,3 +45,14 @@ class SupremeSpider(GenericSpider):
     @staticmethod
     def get_season(year, month):
         return f'spring-summer{year}' if 1 <= month <= 6 else f'fall-winter{year}'
+
+    @staticmethod
+    def get_today_info(today):
+        year, week, _ = today.isocalendar()
+        month = today.month
+        return year, month, week
+
+    @staticmethod
+    def get_date_formats(today):
+        monday = today.day - today.weekday()
+        return [f'{today.year}-{today.month}-{day}' for day in range(monday, monday + 7)]

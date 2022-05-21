@@ -1,4 +1,6 @@
 from unittest import TestCase
+from datetime import date
+
 from products_crawler.spiders.supreme import SupremeSpider
 
 
@@ -15,3 +17,8 @@ class SupremeTest(TestCase):
 
     def test_get_season_given_dec_should_return_winter(self):
         self.assertEqual(SupremeSpider.get_season(2022, 12), 'fall-winter2022')
+
+    def test_get_date_formats_should_return_list_contains_10_str(self):
+        today = date(2022, 5, 21)
+        expects = [f'2022-5-{n}' for n in range(16, 23)]
+        self.assertListEqual(SupremeSpider.get_date_formats(today), expects)
