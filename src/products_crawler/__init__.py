@@ -13,7 +13,7 @@ def main():
 
     parse = ArgumentParser()
     parse.add_argument("brand", choices=spider_loader.list())
-    parse.add_argument("start_urls", nargs="+")
+    parse.add_argument("start_urls", nargs="*")
     args = parse.parse_args()
 
     process = CrawlerProcess(scrapy_settings)
