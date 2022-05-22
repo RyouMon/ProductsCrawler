@@ -9,7 +9,7 @@ from os import makedirs
 from scrapy import Request
 from scrapy.pipelines.files import FilesPipeline
 from scrapy.exceptions import DropItem
-from products_crawler.settings import IMAGES_STORE
+from products_crawler.settings import FILES_STORE
 from products_crawler.utils import file_path, gen_name_from_url
 
 
@@ -19,7 +19,7 @@ class ProductInfoPipeline(object):
         # 保存路径：
         # images/<brand>/<number>/url.txt
         filepath = file_path(item)
-        filepath = os.path.join(IMAGES_STORE, filepath)
+        filepath = os.path.join(FILES_STORE, filepath)
         try:
             makedirs(filepath)
         except OSError:
