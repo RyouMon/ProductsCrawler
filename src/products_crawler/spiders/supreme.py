@@ -21,7 +21,10 @@ class SupremeSpider(GenericSpider):
             ]
 
     def parse_start_url(self, response, **kwargs):
-        """分析当季的页面，生成每一周的请求对象。"""
+        """分析当季的页面，生成每一周的请求对象。
+        @url https://www.supremecommunity.com/season/spring-summer2020/droplists/
+        @returns requests 21 21
+        """
         # 得到每一周的相对地址
         weeks = response.xpath(
             r'//div[@class="catalog-inner"]//a/@href'
@@ -31,16 +34,28 @@ class SupremeSpider(GenericSpider):
             for week in weeks:
                 yield Request(self.image_base_url+week, callback=self.parse_week)
         else:
-            yield self.parse_week(response)
+            for request in self.parse_week(response):
+                yield request
 
     def parse_week(self, response):
-        """分析每一周的页面，返回对每一个商品的请求。"""
+        """分析每一周的页面，返回对每一个商品的请求。
+        @url https://www.supremecommunity.com/season/spring-summer2022/droplist/2022-05-12/
+        @returns requests 22 22
+        """
         details = response.xpath('//div[@class="catalog-item-top"]/@data-itemid')
         for detail_no in details:
             yield Request(
                 url=self.details_base_url+detail_no.get(),
                 callback=self.parse,
             )
+    
+    def parse(self, response, **kwargs):
+        """
+        @url https://www.supremecommunity.com/season/itemdetails/8911
+        @returns items 1 1
+        @scrapes brand title item_url images image_base_url season week
+        """
+        return super().parse(response, **kwargs)
 
     @staticmethod
     def get_season(year, month):
