@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import date
+from datetime import date, timedelta
+
 from scrapy import Request
+
 from . import GenericSpider
 
 
@@ -63,5 +65,16 @@ class SupremeSpider(GenericSpider):
 
     @staticmethod
     def get_date_formats(today):
-        monday = today.day - today.weekday()
-        return [f'{today.year}-{today.month}-{day}' for day in range(monday, monday + 7)]
+        before = today.weekday()
+        after = 6 - before
+        dates = []
+
+        for days in range(before, 0, -1):
+            dates.append(today - timedelta(days=days))
+
+        dates.append(today)
+
+        for days in range(1, after + 1):
+            dates.append(today + timedelta(days=days))
+
+        return [d.isoformat() for d in dates]
