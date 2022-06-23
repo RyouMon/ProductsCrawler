@@ -6,6 +6,9 @@ from scrapy.utils.project import get_project_settings
 from scrapy.spiderloader import SpiderLoader
 
 
+__version__ = '0.1.7'
+
+
 def main():
     os.environ.setdefault('SCRAPY_SETTINGS_MODULE', 'products_crawler.settings')
     scrapy_settings = get_project_settings()
