@@ -6,7 +6,7 @@ from scrapy.utils.project import get_project_settings
 from scrapy.spiderloader import SpiderLoader
 
 
-__version__ = '0.1.8'
+__version__ = '0.1.9'
 
 
 def main():
